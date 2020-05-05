@@ -1,0 +1,15 @@
+<h1>Kitchen Sink Demo Page</h1>
+<%= form_for @kitchen_sink, builder: EtGdsDesignSystem.form_builder_class do |f| %>
+  <h2>Text Field</h2>
+  <div>
+    <%= f.text_field :text_field_value, hint: show_hint? ? 'Hint text' : false %>
+  </div>
+
+
+<% end %>
+
+
+<div><%= link_to 'Render with errors', new_kitchen_sink_path(render_with_errors: true, render_with_hint: params[:render_with_hint]) %></div>
+<div><%= link_to 'Render without errors', new_kitchen_sink_path(render_with_errors: false, render_with_hint: params[:render_with_hint]) %></div>
+<div><%= link_to 'Render with hint', new_kitchen_sink_path(render_with_hint: true, render_with_errors: params[:render_with_errors]) %></div>
+<div><%= link_to 'Render without hint', new_kitchen_sink_path(render_with_hint: false, render_with_errors: params[:render_with_errors]) %></div>

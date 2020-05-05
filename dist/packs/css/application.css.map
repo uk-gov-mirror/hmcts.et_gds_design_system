@@ -1,0 +1,1 @@
+{"version":3,"file":"css/application.css","sources":["webpack:///./app/javascript/gazza-styles.sass"],"sourcesContent":[".gazza {\n  padding: 20px;\n  font-size: 40px; }\n"],"mappings":"AAAA;AACA;AACA;;","sourceRoot":""}
