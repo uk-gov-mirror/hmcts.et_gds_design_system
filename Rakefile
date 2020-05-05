@@ -5,6 +5,8 @@ rescue LoadError
 end
 
 require 'rdoc/task'
+require_relative 'test/dummy/config/application'
+load 'rails/tasks/framework.rake'
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
