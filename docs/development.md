@@ -1,5 +1,13 @@
 # Development Guidelines
 
+# Pre Requisites
+
+You will need
+
+1. rvm
+2. bundler
+3. yarn
+
 ## Setting Up
 First, clone the project using
 
