@@ -7,8 +7,24 @@ First, clone the project using
 git clone git@github.com:hmcts/et_gds_design_system.git
 
 ```
+Then
 
-Then, edit the code in the new folder that was cloned.
+```bash
+cd et_gds_design_system
+bundle install
+yarn install
+
+```
+
+Then
+
+```bash
+cd test/dummy
+yarn install
+cd ../..
+```
+
+Then, edit the code as needed ...
 
 ## Local Development
 
