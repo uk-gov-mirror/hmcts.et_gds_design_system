@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: 9445fd90ac04d23f5b62f0209ecf69e1cb05cd5e
+  revision: ef3369b825655801b25c6231f3f6f2480f3de1a9
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)
       capybara (~> 3.32)
+      i18n (~> 1.8)
       site_prism (~> 3.4)
 
 PATH
