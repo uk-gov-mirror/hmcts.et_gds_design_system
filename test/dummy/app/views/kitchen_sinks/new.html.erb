@@ -2,7 +2,12 @@
 <%= form_for @kitchen_sink, builder: EtGdsDesignSystem.form_builder_class do |f| %>
   <h2>Text Field</h2>
   <div>
-    <%= f.govuk_text_field :text_field_value, label: { text: 'Text field value label' }, hint_text: 'Hint text' %>
+    <% if show_hint? %>
+      <%= f.govuk_text_field :text_field_value, label: {text: 'Text field label'}, hint_text: 'Text field hint' %>
+    <% else %>
+      <%= f.govuk_text_field :text_field_value, label: {text: 'Text field label'} %>
+
+    <% end %>
   </div>
 
 

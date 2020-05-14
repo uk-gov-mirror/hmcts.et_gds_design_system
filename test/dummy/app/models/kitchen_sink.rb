@@ -4,6 +4,6 @@ class KitchenSink
   attribute :text_field_value, :string
 
   def add_example_errors
-    errors.add :text_field_value, 'An error for Text Field Value'
+    errors.add :text_field_value, 'Text field error'
   end
 end
