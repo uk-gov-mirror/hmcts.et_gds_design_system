@@ -12,7 +12,11 @@
 
   <h2>Text Area</h2>
   <div>
-    <%= f.govuk_text_area :text_area_value, label: { text: 'Text area value label'}, hint_text: 'Hint text' %>
+    <% if show_hint? %>
+      <%= f.govuk_text_area :text_area_value, label: { text: 'Text area label'}, hint_text: 'Text area hint' %>
+    <% else %>
+      <%= f.govuk_text_area :text_area_value, label: { text: 'Text area label'} %>
+    <% end %>
   </div>
 
 
