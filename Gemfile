@@ -14,8 +14,8 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 group :test do
-  gem 'et_test_helpers', path: '../et_test_helpers'
-  #gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git'
+  #gem 'et_test_helpers', path: '../et_test_helpers'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git'
 end
 
 
