@@ -22,4 +22,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk text area component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::TextArea] The site prism section
   section :govuk_text_area, govuk_component(:text_area), :govuk_text_area, 'Text area label'
+
+  # @!method govuk_date_field
+  #   A govuk date field component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::DateField] The site prism section
+  section :govuk_date_field, govuk_component(:date_field), :govuk_date_field, 'Date field label'
 end
