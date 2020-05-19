@@ -17,4 +17,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk text field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::TextField] The site prism section
   section :govuk_text_field, govuk_component(:text_field), :govuk_text_field, 'Text field label'
+
+  # @!method govuk_text_area
+  #   A govuk text area component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::TextArea] The site prism section
+  section :govuk_text_area, govuk_component(:text_area), :govuk_text_area, 'Text area label'
 end
