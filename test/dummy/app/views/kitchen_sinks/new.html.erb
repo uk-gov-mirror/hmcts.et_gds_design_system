@@ -20,6 +20,17 @@
   </div>
 
 
+  <h2>Date field</h2>
+
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_date_field :date_field_value, label: { text: 'Date field label'}, hint_text: 'Date field hint' %>
+    <% else %>
+      <%= f.govuk_date_field :date_field_value, label: { text: 'Date field label'} %>
+    <% end %>
+  </div>
+
+
 <% end %>
 
 <h2>Accordion</h2>
