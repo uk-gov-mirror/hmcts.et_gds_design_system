@@ -9,11 +9,11 @@ end
 if File.exists?("app/javascript/packs/application.js")
   append_to_file "app/javascript/packs/application.js" do
     <<-EOS
-    \n
-    import {EtGdsDesignSystem } from "et_gds_design_system"
-    import "et_gds_design_system/stylesheet"
-    EtGdsDesignSystem.initAll();
-    EOS
+\n
+import {EtGdsDesignSystem } from "et_gds_design_system"
+import "et_gds_design_system/stylesheet"
+EtGdsDesignSystem.initAll();
+EOS
   end
 end
 
