@@ -1,3 +1,4 @@
+require 'et_gds_design_system/version'
 install_template_path = File.expand_path("../../install/template.rb", __dir__).freeze
 bin_path = ENV["BUNDLE_BIN"] || "./bin"
 namespace :et_gds_design_system do
