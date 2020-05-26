@@ -30,6 +30,17 @@
     <% end %>
   </div>
 
+  <h2>Radios Button</h2>
+
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'}, hint_text: 'Collection radio buttons hint' %>
+    <% else %>
+      <%= f.govuk_collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'} %>
+    <% end %>
+  </div>
+
+
 
 <% end %>
 
