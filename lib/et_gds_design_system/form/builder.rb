@@ -6,6 +6,10 @@ module EtGdsDesignSystem
       def govuk_date_field(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
+
+      def govuk_collection_radio_buttons(*args, label:, **kw_args)
+        super(*args, legend: label, **kw_args)
+      end
     end
   end
 end

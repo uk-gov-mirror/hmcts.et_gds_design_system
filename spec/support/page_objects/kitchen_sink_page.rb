@@ -27,4 +27,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk date field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::DateField] The site prism section
   section :govuk_date_field, govuk_component(:date_field), :govuk_date_field, 'Date field label'
+
+  # @!method govuk_radios
+  #   A govuk radio button component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+  section :govuk_collection_radio_buttons, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, 'Collection radio buttons label'
 end
