@@ -32,4 +32,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk radio button component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
   section :govuk_collection_radio_buttons, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, 'Collection radio buttons label'
+
+  # @!method govuk_phone_field
+  #   A govuk phone field component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::PhoneField] The site prism section
+  section :govuk_phone_field, govuk_component(:phone_field), :govuk_phone_field, 'Phone field label'
 end
