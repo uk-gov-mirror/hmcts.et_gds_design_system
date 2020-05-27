@@ -41,6 +41,16 @@
   </div>
 
 
+  <h2>Phone Field</h2>
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_phone_field :phone_field_value, label: {text: 'Phone field label'}, hint_text: 'Phone field hint' %>
+    <% else %>
+      <%= f.govuk_phone_field :phone_field_value, label: {text: 'Phone field label'} %>
+    <% end %>
+  </div>
+
+
 
 <% end %>
 
