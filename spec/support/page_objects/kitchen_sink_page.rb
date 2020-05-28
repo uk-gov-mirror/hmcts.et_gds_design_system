@@ -37,4 +37,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk phone field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::PhoneField] The site prism section
   section :govuk_phone_field, govuk_component(:phone_field), :govuk_phone_field, 'Phone field label'
+
+  # @!method govuk_email_field
+  #   A govuk email field component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::EmailField] The site prism section
+  section :govuk_email_field, govuk_component(:email_field), :govuk_email_field, 'Email field label'
 end
