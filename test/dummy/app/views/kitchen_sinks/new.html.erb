@@ -50,6 +50,15 @@
     <% end %>
   </div>
 
+  <h2>Email Field</h2>
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_email_field :email_field_value, label: {text: 'Email field label'}, hint_text: 'Email field hint' %>
+    <% else %>
+      <%= f.govuk_email_field :email_field_value, label: {text: 'Email field label'} %>
+    <% end %>
+  </div>
+
 
 
 <% end %>
