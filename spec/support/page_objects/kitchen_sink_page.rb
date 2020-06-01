@@ -42,4 +42,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk email field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::EmailField] The site prism section
   section :govuk_email_field, govuk_component(:email_field), :govuk_email_field, 'Email field label'
+
+  # @!method govuk_check_boxes
+  #   A govuk check boxes component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+  section :govuk_collection_check_boxes, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, 'Collection check boxes label'
 end
