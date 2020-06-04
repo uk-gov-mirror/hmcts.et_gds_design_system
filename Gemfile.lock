@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: df550f96c79756d96b35db0cfb98c2563bf71179
+  revision: 7474e54a697f6cc52ae28ec15a42bba9eb8722c5
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)
@@ -95,7 +95,7 @@ GEM
     erubi (1.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    govuk_design_system_formbuilder (1.1.10)
+    govuk_design_system_formbuilder (1.1.11)
       actionview (>= 5.2)
       activemodel (>= 5.2)
       activesupport (>= 5.2)

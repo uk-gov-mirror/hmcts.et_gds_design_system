@@ -14,6 +14,10 @@ module EtGdsDesignSystem
       def govuk_collection_check_boxes(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
+
+      def govuk_fieldset(*args, label:, **kw_args)
+        super(*args, legend: label, **kw_args)
+      end
     end
   end
 end
