@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: 7474e54a697f6cc52ae28ec15a42bba9eb8722c5
+  revision: 47f1eb89a3ab840b312dd6db6e5e6053bdedf4ab
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)
@@ -99,7 +99,7 @@ GEM
       actionview (>= 5.2)
       activemodel (>= 5.2)
       activesupport (>= 5.2)
-    i18n (1.8.2)
+    i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -151,7 +151,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
-    regexp_parser (1.7.0)
+    regexp_parser (1.7.1)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
