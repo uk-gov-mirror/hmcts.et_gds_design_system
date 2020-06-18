@@ -34,6 +34,13 @@ And then execute:
 $ bundle exec rails g et_gds_design_system:install
 ```
 
+You might want to review what it has done - which will work if you
+have an application pack in app/javascript/packs/application.js
+
+Also, you may want to consider changing 'extract_css' to true in
+your config/webpacker.yml so that your css works when
+using browsers without javascript.
+
 ## Contributing
 
 Whilst this gem is wrapping the work done by others in the [gov-uk-frontend](https://www.npmjs.com/package/govuk-frontend) npm

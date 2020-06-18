@@ -76,6 +76,15 @@
     <% end %>
   </div>
 
+  <h2>File Field</h2>
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_file_field :file_field_value, label: {text: 'File field label'}, hint_text: 'File field hint' %>
+    <% else %>
+      <%= f.govuk_file_field :file_field_value, label: {text: 'File field label'} %>
+
+    <% end %>
+  </div>
 
 
 <% end %>

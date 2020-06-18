@@ -52,4 +52,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk fieldset component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::TextField] The site prism section
   section :govuk_fieldset, govuk_component(:fieldset), :govuk_fieldset, 'Fieldset label'
+
+  # @!method govuk_file_field
+  #   A govuk file field component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::FileField] The site prism section
+  section :govuk_file_field, govuk_component(:file_field), :govuk_file_field, 'File field label'
 end
