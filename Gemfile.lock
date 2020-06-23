@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/hmcts/et_test_helpers.git
-  revision: d2b6c1600a783e63ac4e084af3eacbee0c707898
+PATH
+  remote: ../et_test_helpers
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)

@@ -19,6 +19,7 @@ RSpec.describe 'govuk_fieldset', type: :feature, js: true do
       expect(test_page).to have_text('Phone field error')
       expect(test_page).to have_text('Email field error')
       expect(test_page).to have_text('Collection check boxes error')
+      expect(test_page).to have_text('File field error')
     end
   end
 end

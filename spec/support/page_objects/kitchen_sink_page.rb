@@ -57,4 +57,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk file field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::FileField] The site prism section
   section :govuk_file_field, govuk_component(:file_field), :govuk_file_field, 'File field label'
+
+  # @!method govuk_error_summary
+  #   A govuk error summary component...
+  #   @return [EtTestHelpers::Components::ErrorSummary] The site prism section
+  section :govuk_error_summary, govuk_component(:error_summary), :govuk_error_summary, 'Test error summary'
 end
