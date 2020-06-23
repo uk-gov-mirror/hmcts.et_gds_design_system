@@ -1,5 +1,6 @@
-PATH
-  remote: ../et_test_helpers
+GIT
+  remote: https://github.com/hmcts/et_test_helpers.git
+  revision: d2b6c1600a783e63ac4e084af3eacbee0c707898
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)
@@ -118,7 +119,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     public_suffix (4.0.5)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
