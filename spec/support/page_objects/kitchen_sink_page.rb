@@ -62,4 +62,9 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk error summary component...
   #   @return [EtTestHelpers::Components::ErrorSummary] The site prism section
   section :govuk_error_summary, govuk_component(:error_summary), :govuk_error_summary, 'Test error summary'
+
+  # @!method govuk_submit
+  #   A govuk submit button component...
+  #   @return [EtTestHelpers::Components::ErrorSummary] The site prism section
+  section :govuk_submit, govuk_component(:submit), :govuk_submit, 'Submission error'
 end
