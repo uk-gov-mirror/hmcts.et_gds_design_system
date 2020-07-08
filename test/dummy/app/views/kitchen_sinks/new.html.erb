@@ -93,6 +93,16 @@
     <% end %>
   </div>
 
+  <h2>Collection Select</h2>
+  <div>
+    <% if show_hint? %>
+      <%= f.govuk_collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'}, hint_text: 'Collection select hint' %>
+    <% else %>
+      <%= f.govuk_collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'} %>
+
+    <% end %>
+  </div>
+
   <h2>Submit Button</h2>
     <%= f.govuk_submit 'Submit' %>
 
