@@ -9,6 +9,7 @@ class KitchenSink
   attribute :phone_field_value, :string
   attribute :email_field_value, :string
   attribute :collection_check_boxes_value, :boolean
+  attribute :collection_select_value
 
   def add_example_errors
     errors.add :text_field_value, 'Text field error'
@@ -19,5 +20,6 @@ class KitchenSink
     errors.add :phone_field_value, 'Phone field error'
     errors.add :email_field_value, 'Email field error'
     errors.add :collection_check_boxes_value, 'Collection check boxes error'
+    errors.add :collection_select_value, 'Collection select error'
   end
 end

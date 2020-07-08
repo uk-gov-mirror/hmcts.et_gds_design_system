@@ -48,6 +48,11 @@ class KitchenSinkPage < ::SitePrism::Page
   #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
   section :govuk_collection_check_boxes, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, 'Collection check boxes label'
 
+  # @!method govuk_collection_select
+  #   A govukselect component wrapping the select, label, hint etc..
+  #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
+  section :govuk_collection_select, govuk_component(:collection_select), :govuk_collection_select, 'Collection select label'
+
   # @!method govuk_fieldset
   #   A govuk fieldset component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::TextField] The site prism section
