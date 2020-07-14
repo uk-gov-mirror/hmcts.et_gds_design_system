@@ -32,4 +32,10 @@ RSpec.describe 'govuk_collection_check_boxes', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_collection_check_boxes.error.text).to eql "Collection check boxes error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_collection_check_boxes.set(['Post', 'Email'])
+    expect(test_page.govuk_collection_check_boxes.value).to eql ['Post', 'Email']
+  end
 end

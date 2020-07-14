@@ -18,6 +18,14 @@ module EtGdsDesignSystem
       def govuk_fieldset(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
+
+      def govuk_email_field(*args, **kw_args)
+        super(*args, spellcheck: false, **kw_args)
+      end
+
+      def govuk_phone_field(*args, **kw_args)
+        super(*args, autocomplete: 'tel', **kw_args)
+      end
     end
   end
 end

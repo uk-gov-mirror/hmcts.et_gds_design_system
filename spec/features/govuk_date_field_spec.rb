@@ -32,4 +32,11 @@ RSpec.describe 'govuk_date_field', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_date_field.error.text).to eql "Date field error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    dt = Date.parse('6/7/2020')
+    test_page.govuk_date_field.set(dt)
+    expect(test_page.govuk_date_field.value).to eql dt
+  end
 end

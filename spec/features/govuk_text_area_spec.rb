@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'govuk_area_field', type: :feature, js: true do
+RSpec.describe 'govuk_textarea_field', type: :feature, js: true do
   include_context 'components test page'
   it 'exists' do
     test_page.load
@@ -31,5 +31,11 @@ RSpec.describe 'govuk_area_field', type: :feature, js: true do
     test_page.load
     test_page.with_errors
     expect(test_page.govuk_text_area.error.text).to eql "Text area error"
+  end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_text_area.set('Test value')
+    expect(test_page.govuk_text_area.value).to eql 'Test value'
   end
 end

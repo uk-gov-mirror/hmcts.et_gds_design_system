@@ -32,4 +32,10 @@ RSpec.describe 'govuk_collection_radio_buttons', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_collection_radio_buttons.error.text).to eql "Collection radio buttons error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_collection_radio_buttons.set('Email')
+    expect(test_page.govuk_collection_radio_buttons.value).to eql 'Email'
+  end
 end

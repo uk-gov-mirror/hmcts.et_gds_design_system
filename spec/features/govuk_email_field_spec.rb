@@ -32,4 +32,10 @@ RSpec.describe 'govuk_email_field', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_email_field.error.text).to eql "Email field error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_email_field.set('fred.bloggs@email.com')
+    expect(test_page.govuk_email_field.value).to eql 'fred.bloggs@email.com'
+  end
 end

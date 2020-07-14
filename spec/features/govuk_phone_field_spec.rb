@@ -32,4 +32,10 @@ RSpec.describe 'govuk_phone_field', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_phone_field.error.text).to eql "Phone field error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_phone_field.set('01234 567890')
+    expect(test_page.govuk_phone_field.value).to eql '01234 567890'
+  end
 end

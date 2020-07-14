@@ -32,4 +32,10 @@ RSpec.describe 'govuk_text_field', type: :feature, js: true do
     test_page.with_errors
     expect(test_page.govuk_text_field.error.text).to eql "Text field error"
   end
+
+  it 'can be set and value returned' do
+    test_page.load
+    test_page.govuk_text_field.set('Test value')
+    expect(test_page.govuk_text_field.value).to eql 'Test value'
+  end
 end
