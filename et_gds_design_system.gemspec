@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webdrivers", "~> 4.3"
   spec.add_development_dependency "capybara-screenshot", "~> 1.0"
   spec.add_development_dependency "site_prism", "~> 3.5"
+  spec.add_development_dependency 'activerecord-nulldb-adapter', '~> 0.4'
 end

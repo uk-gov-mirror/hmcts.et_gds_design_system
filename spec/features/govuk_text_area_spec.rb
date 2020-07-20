@@ -38,4 +38,12 @@ RSpec.describe 'govuk_textarea_field', type: :feature, js: true do
     test_page.govuk_text_area.set('Test value')
     expect(test_page.govuk_text_area.value).to eql 'Test value'
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    test_page.govuk_text_area.set('Test value')
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_text_area.assert_value('Test value')
+  end
 end

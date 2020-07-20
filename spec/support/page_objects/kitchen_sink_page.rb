@@ -13,6 +13,16 @@ class KitchenSinkPage < ::SitePrism::Page
     click_link 'Render with errors'
   end
 
+  # Submits the form
+  def submit
+    govuk_submit.submit
+  end
+
+  # Validates the form has been submitted
+  def assert_submitted
+    submitted_element.present?
+  end
+
   # @!method govuk_text_field
   #   A govuk text field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::TextField] The site prism section
@@ -70,6 +80,10 @@ class KitchenSinkPage < ::SitePrism::Page
 
   # @!method govuk_submit
   #   A govuk submit button component...
-  #   @return [EtTestHelpers::Components::ErrorSummary] The site prism section
+  #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
   section :govuk_submit, govuk_component(:submit), :govuk_submit, 'Submit'
+
+  private
+
+  element :submitted_element, 'p', text: 'Form Submitted'
 end

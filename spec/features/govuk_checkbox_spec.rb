@@ -38,4 +38,12 @@ RSpec.describe 'govuk_collection_check_boxes', type: :feature, js: true do
     test_page.govuk_collection_check_boxes.set(['Post', 'Email'])
     expect(test_page.govuk_collection_check_boxes.value).to eql ['Post', 'Email']
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    test_page.govuk_collection_check_boxes.set(['Post', 'Email'])
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_collection_check_boxes.assert_value(['Post', 'Email'])
+  end
 end

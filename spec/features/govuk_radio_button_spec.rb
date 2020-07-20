@@ -38,4 +38,12 @@ RSpec.describe 'govuk_collection_radio_buttons', type: :feature, js: true do
     test_page.govuk_collection_radio_buttons.set('Email')
     expect(test_page.govuk_collection_radio_buttons.value).to eql 'Email'
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    test_page.govuk_collection_radio_buttons.set('Email')
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_collection_radio_buttons.assert_value('Email')
+  end
 end

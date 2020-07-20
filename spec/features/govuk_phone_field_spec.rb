@@ -38,4 +38,12 @@ RSpec.describe 'govuk_phone_field', type: :feature, js: true do
     test_page.govuk_phone_field.set('01234 567890')
     expect(test_page.govuk_phone_field.value).to eql '01234 567890'
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    test_page.govuk_phone_field.set('01234 567890')
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_phone_field.assert_value('01234 567890')
+  end
 end

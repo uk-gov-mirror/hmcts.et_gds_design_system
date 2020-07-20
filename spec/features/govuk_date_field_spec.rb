@@ -39,4 +39,13 @@ RSpec.describe 'govuk_date_field', type: :feature, js: true do
     test_page.govuk_date_field.set(dt)
     expect(test_page.govuk_date_field.value).to eql dt
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    dt = Date.parse('6/7/2020')
+    test_page.govuk_date_field.set(dt)
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_date_field.assert_value(dt)
+  end
 end

@@ -1,15 +1,16 @@
-class KitchenSink
-  include ActiveModel::Model
-  include ActiveModel::Attributes
+require 'active_record'
+class KitchenSink < ActiveRecord::Base
+  establish_connection adapter: :nulldb,
+                       schema: 'config/nulldb_schema.rb'
   attribute :text_field_value, :string
   attribute :file_field_value, :string
   attribute :text_area_value, :string
   attribute :date_field_value, :date
-  attribute :collection_radio_buttons_value, :boolean
+  attribute :collection_radio_buttons_value
   attribute :phone_field_value, :string
   attribute :email_field_value, :string
-  attribute :collection_check_boxes_value, :boolean
-  attribute :collection_select_value
+  attribute :collection_check_boxes_value
+  attribute :collection_select_value, :string
 
   def add_example_errors
     errors.add :text_field_value, 'Text field error'

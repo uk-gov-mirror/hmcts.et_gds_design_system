@@ -1,4 +1,7 @@
 <h1>Kitchen Sink Demo Page</h1>
+<% if @from_create %>
+  <p style="color: white; background-color: red;">Form Submitted</p>
+<% end %>
 <%= form_for @kitchen_sink, builder: EtGdsDesignSystem.form_builder_class do |f| %>
 
   <h2>Error Summary</h2>

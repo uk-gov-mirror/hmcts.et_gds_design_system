@@ -38,4 +38,12 @@ RSpec.describe 'govuk_email_field', type: :feature, js: true do
     test_page.govuk_email_field.set('fred.bloggs@email.com')
     expect(test_page.govuk_email_field.value).to eql 'fred.bloggs@email.com'
   end
+
+  it 'is reloaded with value submitted' do
+    test_page.load
+    test_page.govuk_email_field.set('fred.bloggs@email.com')
+    test_page.submit
+    test_page.assert_submitted
+    test_page.govuk_email_field.assert_value('fred.bloggs@email.com')
+  end
 end
