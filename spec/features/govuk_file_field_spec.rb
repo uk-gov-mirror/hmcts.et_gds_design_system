@@ -30,6 +30,6 @@ RSpec.describe 'govuk_file_field', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_file_field.error.text).to eql "File field error"
+    test_page.govuk_file_field.assert_error_message("File field error")
   end
 end

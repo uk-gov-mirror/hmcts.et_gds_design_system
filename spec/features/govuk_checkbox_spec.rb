@@ -30,7 +30,7 @@ RSpec.describe 'govuk_collection_check_boxes', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_collection_check_boxes.error.text).to eql "Collection check boxes error"
+    test_page.govuk_collection_check_boxes.assert_error_message("Collection check boxes error")
   end
 
   it 'can be set and value returned' do

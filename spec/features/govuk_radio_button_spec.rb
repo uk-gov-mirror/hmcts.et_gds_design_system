@@ -30,7 +30,7 @@ RSpec.describe 'govuk_collection_radio_buttons', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_collection_radio_buttons.error.text).to eql "Collection radio buttons error"
+    test_page.govuk_collection_radio_buttons.assert_error_message("Collection radio buttons error")
   end
 
   it 'can be set and value returned' do

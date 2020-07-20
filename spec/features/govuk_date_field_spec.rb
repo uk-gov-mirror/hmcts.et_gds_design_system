@@ -30,7 +30,7 @@ RSpec.describe 'govuk_date_field', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_date_field.error.text).to eql "Date field error"
+    test_page.govuk_date_field.assert_error_message("Date field error")
   end
 
   it 'can be set and value returned' do

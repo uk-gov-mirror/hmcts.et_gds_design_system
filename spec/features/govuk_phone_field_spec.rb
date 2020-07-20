@@ -30,7 +30,7 @@ RSpec.describe 'govuk_phone_field', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_phone_field.error.text).to eql "Phone field error"
+    test_page.govuk_phone_field.assert_error_message("Phone field error")
   end
 
   it 'can be set and value returned' do

@@ -30,7 +30,7 @@ RSpec.describe 'govuk_collection_select', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_collection_select.error.text).to eql "Collection select error"
+    test_page.govuk_collection_select.assert_error_message("Collection select error")
   end
 
   it 'can be set and value returned' do

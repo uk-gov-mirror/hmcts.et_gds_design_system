@@ -30,7 +30,7 @@ RSpec.describe 'govuk_textarea_field', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    expect(test_page.govuk_text_area.error.text).to eql "Text area error"
+    test_page.govuk_text_area.assert_error_message("Text area error")
   end
 
   it 'can be set and value returned' do

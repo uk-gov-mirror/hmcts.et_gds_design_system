@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: 30e8ef91068089af860569016cb9c0dbf8922299
+  revision: c29815d4e6ed8b904a04a236ccaf315b4d51ec6e
   specs:
     et_test_helpers (0.1.0)
       activesupport (~> 6.0)
@@ -99,7 +99,7 @@ GEM
       actionview (>= 5.2)
       activemodel (>= 5.2)
       activesupport (>= 5.2)
-    i18n (1.8.3)
+    i18n (1.8.4)
       concurrent-ruby (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -202,7 +202,7 @@ GEM
     websocket-extensions (0.1.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
