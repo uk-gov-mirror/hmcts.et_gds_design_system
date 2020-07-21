@@ -32,4 +32,11 @@ RSpec.describe 'govuk_file_field', type: :feature, js: true do
     test_page.with_errors
     test_page.govuk_file_field.assert_error_message("File field error")
   end
+
+  it 'can be set and value returned' do
+    file = __FILE__
+    test_page.load
+    test_page.govuk_file_field.set(file)
+    test_page.govuk_file_field.assert_value(file)
+  end
 end
