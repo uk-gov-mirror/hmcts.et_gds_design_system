@@ -2,7 +2,7 @@ const RevealOnRadioButton = {
   init: function RevealOnRadioButton() {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-reveal-on-radio-button"]'));
     document.addEventListener('change', function(e) {
-      const nodesToChange = nodes.select((node) => {
+      const nodesToChange = nodes.filter((node) => {
         return e.target.matches(node.attributes['data-reveal-on-selector'].value);
       });
       if (nodesToChange.length == 0) {
