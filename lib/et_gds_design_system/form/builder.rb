@@ -66,10 +66,24 @@ module EtGdsDesignSystem
       end
       deprecate govuk_text_area: 'govuk_text_area is deprecated - please use text_area instead and read the documentation as it makes your code simpler'
 
+      def file_field(attribute, *args, label: true, hint: true, optional: false, **kw_args)
+        __getobj__.govuk_file_field(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
+      end
+      deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
+
+      def check_box(attribute, *args, label: true, hint: true, optional: false, **kw_args)
+        __getobj__.govuk_check_box(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
+      end
+      deprecate govuk_check_box: 'govuk_check_box is deprecated - please use check_box instead and read the documentation as it makes your code simpler'
+
       def revealed_content(attribute, values:, classes: [], multiple: false, &block)
         # div data-reveal-on-selector='input[name="employment[current_situation]"]' data-reveal-on-value="still_employed"
         name = "#{__field_name_for(attribute)}#{multiple ? '[]' : ''}"
-        content_tag 'div', class: classes, data: { 'reveal-on-selector': "input[name=\"#{name}\"]", 'reveal-on-value': values.to_json } do
+        content_tag 'div', class: classes, data: {
+          'reveal-on-selector': "input[name=\"#{name}\"]",
+          'reveal-on-value': values.to_json,
+          'module': 'et-gds-design-system-reveal-on-radio-button'
+        } do
           capture(&block)
         end
       end
