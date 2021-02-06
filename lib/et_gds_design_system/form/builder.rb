@@ -31,6 +31,11 @@ module EtGdsDesignSystem
         __getobj__.govuk_collection_radio_buttons(attribute, collection, key_method, value_method, *args, legend: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
       end
 
+      def collection_select(attribute, collection = @template.t(".#{attribute}.options").to_a, key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, html_options: {}, **kw_args)
+        __getobj__.govuk_collection_select(attribute, collection, key_method, value_method, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), html_options: { class: 'govuk-!-width-two-thirds' }.merge(html_options), **kw_args)
+      end
+      deprecate govuk_collection_select: 'govuk_collection_select is deprecated - please use collection_select instead and read the documentation as it makes your code simpler'
+
       def govuk_collection_check_boxes(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
@@ -44,12 +49,26 @@ module EtGdsDesignSystem
         super(*args, legend: label, **kw_args)
       end
 
+      def fieldset(*args, label:, **kw_args, &block)
+        __getobj__.govuk_fieldset(*args, legend: normalize_label(nil, label, false), **kw_args, &block)
+      end
+
       def govuk_email_field(*args, **kw_args)
         super(*args, spellcheck: false, **kw_args)
+      end
+      deprecate govuk_email_field: 'govuk_email_field is deprecated - please use email_field instead and read the documentation as it makes your code simpler'
+
+      def email_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
+        __getobj__.govuk_email_field(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), width: width, **kw_args)
       end
 
       def govuk_phone_field(*args, **kw_args)
         super(*args, autocomplete: 'tel', **kw_args)
+      end
+      deprecate govuk_phone_field: 'govuk_phone_field is deprecated - please use phone_field instead and read the documentation as it makes your code simpler'
+
+      def phone_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
+        __getobj__.govuk_phone_field(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), width: width, **kw_args)
       end
 
       def govuk_text_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
@@ -76,10 +95,14 @@ module EtGdsDesignSystem
       end
       deprecate govuk_check_box: 'govuk_check_box is deprecated - please use check_box instead and read the documentation as it makes your code simpler'
 
-      def revealed_content(attribute, values:, classes: [], multiple: false, &block)
+      def submit(*args)
+        __getobj__.govuk_submit(*args)
+      end
+
+      def revealed_content(attribute, values:, classes: [], multiple: false, tag: 'div', &block)
         # div data-reveal-on-selector='input[name="employment[current_situation]"]' data-reveal-on-value="still_employed"
         name = "#{__field_name_for(attribute)}#{multiple ? '[]' : ''}"
-        content_tag 'div', class: classes, data: {
+        content_tag tag, class: classes, data: {
           'reveal-on-selector': "input[name=\"#{name}\"]",
           'reveal-on-value': values.to_json,
           'module': 'et-gds-design-system-reveal-on-radio-button'

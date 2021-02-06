@@ -2,19 +2,21 @@ const RevealOnRadioButton = {
   init: function RevealOnRadioButton() {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-reveal-on-radio-button"]'));
     document.addEventListener('change', function(e) {
-      const node = nodes.find((node) => {
+      const nodesToChange = nodes.select((node) => {
         return e.target.matches(node.attributes['data-reveal-on-selector'].value);
       });
-      if (!node) {
+      if (nodesToChange.length == 0) {
         return;
       }
 
-      const value = JSON.parse(node.attributes['data-reveal-on-value'].value);
-      if((e.target.value === value || (Array.isArray(value) && value.indexOf(e.target.value) >= 0)) && e.target.checked) {
-        showNode(node);
-      } else {
-        hideNode(node);
-      }
+      nodesToChange.forEach((node) => {
+        const value = JSON.parse(node.attributes['data-reveal-on-value'].value);
+        if((e.target.value === value || (Array.isArray(value) && value.indexOf(e.target.value) >= 0)) && e.target.checked) {
+          showNode(node);
+        } else {
+          hideNode(node);
+        }
+      });
     });
     setInitialStates(nodes);
   }
