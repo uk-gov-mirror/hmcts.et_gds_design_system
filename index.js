@@ -12,7 +12,7 @@ EtGdsDesignSystem.initAll = () => {
         document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
         GOVUKFrontend.initAll();
-        EtGdsDesignSystem.Components.Reveal.init();
+        EtGdsDesignSystem.Components.RevealOnRadioButton();
     }
     document.addEventListener("turbolinks:load", onPageLoad);
 };
