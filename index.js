@@ -17,4 +17,4 @@ EtGdsDesignSystem.initAll = () => {
     }
     document.addEventListener("turbolinks:load", onPageLoad);
 };
-export { EtGdsDesignSystem, Components, Components.RevealOnRadioButton };
+export { EtGdsDesignSystem, Components };
