@@ -1,4 +1,4 @@
-RevealOnRadioButton = {
+const RevealOnRadioButton = {
   init: function RevealOnRadioButton() {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-reveal-on-radio-button"]'));
     document.addEventListener('change', function(e) {
