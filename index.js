@@ -1,3 +1,5 @@
+import RevealOnRadioButton from "./app/javascript/components/RevealOnRadioButton";
+
 const GOVUKFrontend = require("govuk-frontend/govuk/all")
 require.context('govuk-frontend/govuk/assets/images', true)
 require('turbolinks').start();
@@ -15,4 +17,4 @@ EtGdsDesignSystem.initAll = () => {
     }
     document.addEventListener("turbolinks:load", onPageLoad);
 };
-export { EtGdsDesignSystem };
+export { EtGdsDesignSystem, Components, Components.RevealOnRadioButton };
