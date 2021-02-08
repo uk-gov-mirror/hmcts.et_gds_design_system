@@ -115,7 +115,7 @@ module EtGdsDesignSystem
 
       def __field_name_for(attribute)
         text_input = capture do
-          govuk_text_field(attribute, label: { text: false }, hint: { text: false })
+          text_field(attribute, label: false, hint: false)
         end
         text_input.match(/name="(.*?)"/)[1]
       end
@@ -135,6 +135,7 @@ module EtGdsDesignSystem
         when String then HINT_DEFAULTS.merge(text: hint)
         when Hash then HINT_DEFAULTS.merge(hint)
         when TrueClass then __hint_hash(attribute)
+        when FalseClass then { text: false }
         else hint
         end
       end
