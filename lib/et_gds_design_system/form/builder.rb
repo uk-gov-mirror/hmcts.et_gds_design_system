@@ -5,6 +5,7 @@ module EtGdsDesignSystem
   module Form
     class Builder < SimpleDelegator
       LABEL_DEFAULTS = { size: 's' }.freeze
+      FIELDSET_LABEL_DEFAULTS = { size: 'm' }
       HINT_DEFAULTS = {}.freeze
       OPTIONAL_I18N_KEY = 'shared.optional'
 
@@ -50,7 +51,7 @@ module EtGdsDesignSystem
       end
 
       def fieldset(*args, label:, **kw_args, &block)
-        __getobj__.govuk_fieldset(*args, legend: normalize_label(nil, label, false), **kw_args, &block)
+        __getobj__.govuk_fieldset(*args, legend: normalize_fieldset_label(nil, label, false), **kw_args, &block)
       end
 
       def govuk_email_field(*args, **kw_args)
@@ -126,6 +127,16 @@ module EtGdsDesignSystem
         when Hash then LABEL_DEFAULTS.merge(optional ? label.merge(text: __with_optional(label[:text], optional)) : label)
         when FalseClass then { text: false }
         when TrueClass then LABEL_DEFAULTS.merge(text: __with_optional(@template.t(".#{attribute}.label"), optional))
+        else label
+        end
+      end
+
+      def normalize_fieldset_label(attribute, label, optional)
+        case label
+        when String then FIELDSET_LABEL_DEFAULTS.merge(text: __with_optional(label, optional))
+        when Hash then FIELDSET_LABEL_DEFAULTS.merge(optional ? label.merge(text: __with_optional(label[:text], optional)) : label)
+        when FalseClass then { text: false }
+        when TrueClass then FIELDSET_LABEL_DEFAULTS.merge(text: __with_optional(@template.t(".#{attribute}.label"), optional))
         else label
         end
       end
