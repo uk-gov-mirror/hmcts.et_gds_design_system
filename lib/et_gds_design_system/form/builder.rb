@@ -6,6 +6,7 @@ module EtGdsDesignSystem
     class Builder < SimpleDelegator
       LABEL_DEFAULTS = { size: 's' }.freeze
       FIELDSET_LABEL_DEFAULTS = { size: 'm' }
+      CHECK_BOX_LABEL_DEFAULTS = { size: nil }
       HINT_DEFAULTS = {}.freeze
       OPTIONAL_I18N_KEY = 'shared.optional'
 
@@ -92,7 +93,7 @@ module EtGdsDesignSystem
       deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
 
       def check_box(attribute, *args, label: true, hint: true, optional: false, **kw_args)
-        __getobj__.govuk_check_box(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
+        __getobj__.govuk_check_box(attribute, *args, label: normalize_check_box_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
       end
       deprecate govuk_check_box: 'govuk_check_box is deprecated - please use check_box instead and read the documentation as it makes your code simpler'
 
@@ -127,6 +128,16 @@ module EtGdsDesignSystem
         when Hash then LABEL_DEFAULTS.merge(optional ? label.merge(text: __with_optional(label[:text], optional)) : label)
         when FalseClass then { text: false }
         when TrueClass then LABEL_DEFAULTS.merge(text: __with_optional(@template.t(".#{attribute}.label"), optional))
+        else label
+        end
+      end
+
+      def normalize_check_box_label(attribute, label, optional)
+        case label
+        when String then CHECK_BOX_LABEL_DEFAULTS.merge(text: __with_optional(label, optional))
+        when Hash then CHECK_BOX_LABEL_DEFAULTS.merge(optional ? label.merge(text: __with_optional(label[:text], optional)) : label)
+        when FalseClass then { text: false }
+        when TrueClass then CHECK_BOX_LABEL_DEFAULTS.merge(text: __with_optional(@template.t(".#{attribute}.label"), optional))
         else label
         end
       end
