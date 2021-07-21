@@ -29,11 +29,11 @@ module EtGdsDesignSystem
       end
       deprecate govuk_collection_radio_buttons: 'govuk_collection_radio_buttons is deprecated - please use collection_radio_buttons instead and read the documentation as it makes your code simpler'
 
-      def collection_radio_buttons(attribute, collection = @template.t(".#{attribute}.options").to_a, key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
+      def collection_radio_buttons(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
         __getobj__.govuk_collection_radio_buttons(attribute, collection, key_method, value_method, *args, legend: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
       end
 
-      def collection_select(attribute, collection = @template.t(".#{attribute}.options").to_a, key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, html_options: {}, **kw_args)
+      def collection_select(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, html_options: {}, **kw_args)
         __getobj__.govuk_collection_select(attribute, collection, key_method, value_method, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), html_options: { class: 'govuk-!-width-two-thirds' }.merge(html_options), **kw_args)
       end
       deprecate govuk_collection_select: 'govuk_collection_select is deprecated - please use collection_select instead and read the documentation as it makes your code simpler'
@@ -43,8 +43,21 @@ module EtGdsDesignSystem
       end
       deprecate govuk_collection_check_boxes: 'govuk_collection_check_boxes is deprecated - please use collection_check_boxes instead and read the documentation as it makes your code simpler'
 
-      def collection_check_boxes(attribute, collection = @template.t(".#{attribute}.options").to_a, key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
+      def collection_check_boxes(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
         __getobj__.govuk_collection_check_boxes(attribute, collection, key_method, value_method, *args, legend: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
+      end
+
+      def check_boxes_fieldset(attribute_name, label: true, caption: {}, hint: true, small: false, classes: nil, form_group: {}, multiple: true, optional: false, include_hidden: true, &block)
+        __getobj__.govuk_check_boxes_fieldset(attribute_name, legend: normalize_label(attribute_name, label, optional), caption: caption, hint: normalize_hint(attribute_name, hint), small: small, classes: classes, form_group: form_group, multiple: multiple, &block)
+      end
+
+      def singular_check_box(attribute_name, value: true, unchecked_value: false, fieldset_label: true, fieldset_caption: {}, fieldset_hint: true, optional: false, include_hidden: true, label: fieldset_label, hint: false)
+        check_boxes_fieldset(attribute_name, multiple: false, label: fieldset_label, hint: fieldset_hint, include_hidden: include_hidden) do
+          result = []
+          result << __getobj__.hidden_field(attribute_name, value: unchecked_value) if include_hidden
+          result << check_box(attribute_name, value, unchecked_value, multiple: false, label: normalize_check_box_label(attribute_name, label, optional), hint: hint)
+          safe_join(result)
+        end
       end
 
       def govuk_fieldset(*args, label:, **kw_args)
@@ -179,6 +192,13 @@ module EtGdsDesignSystem
         return label_text if label_text.nil? || !optional
 
         "#{label_text} #{@template.t(OPTIONAL_I18N_KEY)}"
+      end
+
+      def i18n_options_for(attribute)
+        @template.t(".#{attribute}.options").to_a.map do |item|
+          item[0] = item[0].to_s
+          item
+        end
       end
     end
   end
