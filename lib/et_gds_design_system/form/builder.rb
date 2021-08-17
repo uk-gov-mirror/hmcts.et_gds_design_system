@@ -29,8 +29,8 @@ module EtGdsDesignSystem
       end
       deprecate govuk_collection_radio_buttons: 'govuk_collection_radio_buttons is deprecated - please use collection_radio_buttons instead and read the documentation as it makes your code simpler'
 
-      def collection_radio_buttons(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
-        __getobj__.govuk_collection_radio_buttons(attribute, collection, key_method, value_method, *args, legend: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
+      def collection_radio_buttons(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, include_hidden: false, **kw_args)
+        __getobj__.govuk_collection_radio_buttons(attribute, collection, key_method, value_method, *args, legend: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), include_hidden: include_hidden, **kw_args)
       end
 
       def collection_select(attribute, collection = i18n_options_for(attribute), key_method = :first, value_method = :last, *args, label: true, hint: true, optional: false, html_options: {}, **kw_args)
