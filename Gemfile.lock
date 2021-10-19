@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    et_gds_design_system (3.0.2)
+    et_gds_design_system (3.0.3)
       govuk_design_system_formbuilder (~> 2.1)
       rails (>= 6.0)
       webpacker (~> 5.0)
