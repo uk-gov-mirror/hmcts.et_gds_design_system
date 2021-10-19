@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "govuk_design_system_formbuilder"
+require "et_gds_design_system/elements/date"
 module EtGdsDesignSystem
   module Form
     class Builder < SimpleDelegator
