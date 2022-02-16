@@ -2,6 +2,7 @@
 
 require "govuk_design_system_formbuilder"
 require "et_gds_design_system/elements/date"
+require "et_gds_design_system/elements/file_dropzone"
 module EtGdsDesignSystem
   module Form
     class Builder < SimpleDelegator
@@ -105,6 +106,18 @@ module EtGdsDesignSystem
         __getobj__.govuk_file_field(attribute, *args, label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
       end
       deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
+
+      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
+        Elements::FileDropzone.new(self,
+                                   object_name,
+                                   attribute, hint: normalize_hint(attribute, hint),
+                                   label: normalize_label(attribute, label, optional),
+                                   caption: caption,
+                                   form_group: form_group,
+                                   accepted_files: accepted_files,
+                                   type: type,
+                                   **kw_args).html
+      end
 
       def check_box(attribute, *args, label: true, hint: true, optional: false, **kw_args)
         __getobj__.govuk_check_box(attribute, *args, label: normalize_check_box_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)

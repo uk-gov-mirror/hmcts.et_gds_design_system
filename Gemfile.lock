@@ -13,6 +13,7 @@ PATH
   specs:
     et_gds_design_system (3.0.4)
       govuk_design_system_formbuilder (~> 2.1)
+      rack-proxy (~> 0.6)
       rails (>= 6.0)
       webpacker (~> 5.0)
 

@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 6.0"
   spec.add_dependency 'govuk_design_system_formbuilder', '~> 2.1'
   spec.add_dependency 'webpacker', '~> 5.0'
+  spec.add_dependency 'rack-proxy', '~> 0.6'
+
   spec.add_development_dependency "rspec-rails", "~> 4.0"
   spec.add_development_dependency "capybara", "~> 3"
   spec.add_development_dependency "selenium-webdriver", "~> 3.142"
