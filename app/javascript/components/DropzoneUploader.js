@@ -32,7 +32,10 @@ function buildUpload(cb) {
       }
     },
     {
-      responseType: 'json'
+      responseType: 'json',
+      headers: {
+        'Accept': 'application/json'
+      }
     }
   )
     .then((response) => {
@@ -50,7 +53,7 @@ function onGetPresignedError(error) {
 }
 
 function removeButtonElement(button) {
-  return button.detach();
+  //return button.detach();
 }
 
 function appendButtonElement(button) {

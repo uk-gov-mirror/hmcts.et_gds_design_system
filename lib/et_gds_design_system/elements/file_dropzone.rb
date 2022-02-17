@@ -43,7 +43,7 @@ module EtGdsDesignSystem
                 data: {
                   module: 'et-gds-design-system-dropzone-uploader',
                   form_id: form_id,
-                  upload_key_id: 'dummy_upload_key_id',
+                  upload_key_id: 'additional_claimants_upload_upload_additional_information',
                   file_name_id: 'additional_claimants_upload_upload_file_name',
                   type: @type,
                   accepted_files: @accepted_files&.join(',')
