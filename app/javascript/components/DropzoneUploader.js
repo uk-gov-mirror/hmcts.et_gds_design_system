@@ -5,7 +5,7 @@ import SparkMD5 from 'spark-md5';
 
 Dropzone.autoDiscover = false
 
-let removedButton, uploadKey, dropzoneUploadForm;
+let uploadKey, dropzoneUploadForm;
 
 function localisedRemoveFileString() {
   let currentLocale = document.querySelector('html').getAttribute('lang');
@@ -52,12 +52,12 @@ function onGetPresignedError(error) {
   */
 }
 
-function removeButtonElement(button) {
-  //return button.detach();
+function hideButton() {
+  document.querySelector("*[data-auto-hide]").style.display = 'none';
 }
 
-function appendButtonElement(button) {
-  document.querySelector(".dz-default.dz-message.grid-row .column-one-half").append(button);
+function showButton() {
+  document.querySelector("*[data-auto-hide]").style.display = '';
 }
 
 
@@ -68,7 +68,7 @@ function setupAzure(file, presignedData, done) {
     dropzoneUploadForm.options.headers["Content-MD5"] = hash;
     uploadKey = presignedData.data.fields.key;
     setUploadUrl(presignedData.data.url);
-    removedButton = removeButtonElement(document.querySelector("#upload-button"));
+    hideButton();
     done();
   })
 }
@@ -109,14 +109,13 @@ function getFileHash(file, headerCallback) {
 
 /**
  *
- * @param formId
  * @param uploadKeyId
  * @param fileNameId
  * @param type - The content type - for ET3 was 'application/rtf'
  * @param acceptedFiles - The accepted files - for ET3 was ".rtf"
  * @returns {}
  */
-const initDropzone = (node, formId, uploadKeyId, fileNameId, type, acceptedFiles) => {
+const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
   let provider;
   const DROPZONE_OPTIONS = {
     url: '/',
@@ -129,6 +128,19 @@ const initDropzone = (node, formId, uploadKeyId, fileNameId, type, acceptedFiles
       this.on("removedfile", function () {
         document.getElementById(fileNameId).setAttribute('value', null)
         document.getElementById(uploadKeyId).setAttribute('value', null)
+      });
+      this.on('sending', (file, xhr) => {
+        // Source: https://github.com/enyo/dropzone/issues/590#issuecomment-51498225
+        if (provider === 'azure') {
+          const send = xhr.send;
+          xhr.send = function () {
+            send.call(xhr, file);
+            xhr.send = send;
+          };
+        }
+      });
+      this.on('accepted', (file, done) => {
+        debugger;
       });
 
       let filenameElement = document.getElementById(fileNameId);
@@ -164,25 +176,15 @@ const initDropzone = (node, formId, uploadKeyId, fileNameId, type, acceptedFiles
     // Add a link to remove files that were erroneously uploaded
     addRemoveLinks: true,
     success: function (file) {
-      appendButtonElement(removedButton);
+      showButton();
       // Take upload URL and pass it into the second form
       document.getElementById(uploadKeyId).setAttribute('value', uploadKey)
       document.getElementById(fileNameId).setAttribute('value', file.name)
     },
     canceled: function (file) {
-      appendButtonElement(removedButton)
+      showButton()
       document.getElementById(uploadKeyId).setAttribute('value', uploadKey)
       document.getElementById(fileNameId).setAttribute('value', file.name)
-    },
-    sending: function (file, xhr) {
-      // Source: https://github.com/enyo/dropzone/issues/590#issuecomment-51498225
-      if (provider === 'azure') {
-        const send = xhr.send;
-        xhr.send = function () {
-          send.call(xhr, file);
-          xhr.send = send;
-        };
-      }
     }
   };
 
@@ -191,7 +193,6 @@ const initDropzone = (node, formId, uploadKeyId, fileNameId, type, acceptedFiles
 }
 
 /**
- * @param formId
  * @param uploadKeyId
  * @param fileNameId
  * @param type - The content type - for ET3 was 'application/rtf'
@@ -201,8 +202,8 @@ const DropzoneUploader = {
   init: () => {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-dropzone-uploader"]'));
     nodes.forEach((node) => {
-      const { formId, uploadKeyId, fileNameId, type, acceptedFiles } = node.dataset
-      initDropzone(node, formId, uploadKeyId, fileNameId, type, acceptedFiles);
+      const { uploadKeyId, fileNameId, type, acceptedFiles } = node.dataset
+      initDropzone(node, uploadKeyId, fileNameId, type, acceptedFiles);
     })
   }
 }

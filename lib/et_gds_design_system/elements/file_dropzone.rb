@@ -17,7 +17,7 @@ module EtGdsDesignSystem
       include ::GOVUKDesignSystemFormBuilder::Traits::Supplemental
       include ::GOVUKDesignSystemFormBuilder::Traits::HTMLAttributes
 
-      def initialize(builder, object_name, attribute_name, hint:, label:, caption:, form_group:, accepted_files: nil, type: nil, **kwargs, &block)
+      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, caption:, form_group:, accepted_files: nil, type: nil, **kwargs, &block)
         super(builder, object_name, attribute_name, &block)
 
         @label = label
@@ -26,6 +26,7 @@ module EtGdsDesignSystem
         @html_attributes = kwargs
         @form_group = form_group
         @accepted_files = accepted_files
+        @button_text = button_text
       end
 
       def html
@@ -37,36 +38,24 @@ module EtGdsDesignSystem
       private
 
       def file
-        form_id = "dummyid"
         tag.div(class: 'dropzone',
-                id: form_id,
                 data: {
                   module: 'et-gds-design-system-dropzone-uploader',
-                  form_id: form_id,
                   upload_key_id: 'additional_claimants_upload_upload_additional_information',
                   file_name_id: 'additional_claimants_upload_upload_file_name',
                   type: @type,
                   accepted_files: @accepted_files&.join(',')
                 }) do
           safe_join [
-                      tag.div(class: 'dz-default dz-message grid-row') do
+                      tag.div(class: 'dz-message grid-row') do
                         safe_join [
                                     tag.div(class: 'column-one-third arrow-icon') do
                                       tag.p
                                     end,
                                     tag.div(class: 'column-one-half') do
-                                      safe_join [
-                                                  tag.span(class: 'normal') do
-                                                    "drag text goes here"
-                                                  end,
-                                                  tag.div(class: 'bold-normal') do
-                                                    "OR text"
-                                                  end,
-                                                  # @TODO Remove hard coded id
-                                                  tag.button(class: 'button button-secondary', id: 'upload-button') do
-                                                    "Upload button text goes here"
-                                                  end
-                                                ]
+                                      tag.button(type: 'button', class: 'govuk-button govuk-button--secondary', data: { 'auto-hide': true }) do
+                                        @button_text
+                                      end if @button_text
                                     end
                                   ]
                       end,
