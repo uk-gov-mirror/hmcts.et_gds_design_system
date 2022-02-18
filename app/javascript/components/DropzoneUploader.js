@@ -7,15 +7,6 @@ Dropzone.autoDiscover = false
 
 let uploadKey, dropzoneUploadForm;
 
-function localisedRemoveFileString() {
-  let currentLocale = document.querySelector('html').getAttribute('lang');
-  if (currentLocale === 'cy') {
-    return "Dileu ffeil";
-  } else {
-    return "Remove file";
-  }
-}
-
 function setUploadUrl(url) {
   dropzoneUploadForm.options.url = url;
 }
@@ -109,13 +100,14 @@ function getFileHash(file, headerCallback) {
 
 /**
  *
- * @param uploadKeyId
- * @param fileNameId
+ * @param node
  * @param type - The content type - for ET3 was 'application/rtf'
  * @param acceptedFiles - The accepted files - for ET3 was ".rtf"
+ * @param removeFileButtonText - Self explanatory
+ * @param attributeName - The attribute name from rails
  * @returns {}
  */
-const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
+const initDropzone = (node, type, acceptedFiles, removeFileButtonText, attributeName) => {
   let provider;
   const DROPZONE_OPTIONS = {
     url: '/',
@@ -126,8 +118,7 @@ const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
         alert("Too many files")
       });
       this.on("removedfile", function () {
-        document.getElementById(fileNameId).setAttribute('value', null)
-        document.getElementById(uploadKeyId).setAttribute('value', null)
+        node.querySelectorAll("*[data-submit-key]").forEach((inputEl) => inputEl.setAttribute('value', null))
       });
       this.on('sending', (file, xhr) => {
         // Source: https://github.com/enyo/dropzone/issues/590#issuecomment-51498225
@@ -139,11 +130,8 @@ const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
           };
         }
       });
-      this.on('accepted', (file, done) => {
-        debugger;
-      });
 
-      let filenameElement = document.getElementById(fileNameId);
+      let filenameElement = node.querySelector("*[data-submit-key=filename]");
       let filenameValue = filenameElement.getAttribute('value');
       if (filenameValue) {
         let existingFile = {name: filenameValue, type: type};
@@ -153,7 +141,7 @@ const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
       }
     },
     // Set "Remove File" string by locale
-    dictRemoveFile: localisedRemoveFileString(),
+    dictRemoveFile: removeFileButtonText,
     // Only one file goes to the bucket via the URL
     parallelUploads: 1,
     uploadMultiple: false,
@@ -178,13 +166,13 @@ const initDropzone = (node, uploadKeyId, fileNameId, type, acceptedFiles) => {
     success: function (file) {
       showButton();
       // Take upload URL and pass it into the second form
-      document.getElementById(uploadKeyId).setAttribute('value', uploadKey)
-      document.getElementById(fileNameId).setAttribute('value', file.name)
+      node.querySelector("*[data-submit-key=path]").setAttribute('value', uploadKey)
+      node.querySelector("*[data-submit-key=filename]").setAttribute('value', file.name)
+      node.querySelector("*[data-submit-key=content_type]").setAttribute('value', file.type)
     },
     canceled: function (file) {
       showButton()
-      document.getElementById(uploadKeyId).setAttribute('value', uploadKey)
-      document.getElementById(fileNameId).setAttribute('value', file.name)
+      node.querySelectorAll("*[data-submit-key]").forEach((inputEl) => inputEl.setAttribute('value', null))
     }
   };
 
@@ -202,8 +190,8 @@ const DropzoneUploader = {
   init: () => {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-dropzone-uploader"]'));
     nodes.forEach((node) => {
-      const { uploadKeyId, fileNameId, type, acceptedFiles } = node.dataset
-      initDropzone(node, uploadKeyId, fileNameId, type, acceptedFiles);
+      const { type, acceptedFiles, removeFileButtonText, attributeName } = node.dataset
+      initDropzone(node, type, acceptedFiles, removeFileButtonText, attributeName);
     })
   }
 }

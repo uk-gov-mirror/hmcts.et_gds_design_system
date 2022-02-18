@@ -17,7 +17,7 @@ module EtGdsDesignSystem
       include ::GOVUKDesignSystemFormBuilder::Traits::Supplemental
       include ::GOVUKDesignSystemFormBuilder::Traits::HTMLAttributes
 
-      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, caption:, form_group:, accepted_files: nil, type: nil, **kwargs, &block)
+      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, remove_file_button_text: nil, caption:, form_group:, accepted_files: nil, type: nil, **kwargs, &block)
         super(builder, object_name, attribute_name, &block)
 
         @label = label
@@ -27,6 +27,7 @@ module EtGdsDesignSystem
         @form_group = form_group
         @accepted_files = accepted_files
         @button_text = button_text
+        @remove_file_button_text = remove_file_button_text
       end
 
       def html
@@ -41,8 +42,8 @@ module EtGdsDesignSystem
         tag.div(class: 'dropzone',
                 data: {
                   module: 'et-gds-design-system-dropzone-uploader',
-                  upload_key_id: 'additional_claimants_upload_upload_additional_information',
-                  file_name_id: 'additional_claimants_upload_upload_file_name',
+                  attribute_name: @attribute_name,
+                  remove_file_button_text: @remove_file_button_text,
                   type: @type,
                   accepted_files: @accepted_files&.join(',')
                 }) do
@@ -59,9 +60,13 @@ module EtGdsDesignSystem
                                     end
                                   ]
                       end,
-                      @builder.hidden_field(:upload_additional_information),
-                      @builder.hidden_field(:upload_file_name)
-
+                      @builder.fields_for(@attribute_name) do |f|
+                        safe_join [
+                                    f.hidden_field(:path, data: { submit_key: 'path' }),
+                                    f.hidden_field(:filename, data: { submit_key: 'filename' }),
+                                    f.hidden_field(:content_type, data: { submit_key: 'content_type' })
+                                  ]
+                      end
           ]
         end
       end

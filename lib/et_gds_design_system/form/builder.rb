@@ -107,12 +107,13 @@ module EtGdsDesignSystem
       end
       deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
 
-      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, upload_button: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
+      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, upload_button: true, remove_file_button: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
         Elements::FileDropzone.new(self,
                                    object_name,
                                    attribute, hint: normalize_hint(attribute, hint),
                                    label: normalize_label(attribute, label, optional),
-                                   button_text: normalize_upload_button(attribute, upload_button),
+                                   button_text: normalize_text_argument(attribute, upload_button, 'button_text'),
+                                   remove_file_button_text: normalize_text_argument(attribute, remove_file_button, 'remove_file_button_text'),
                                    caption: caption,
                                    form_group: form_group,
                                    accepted_files: accepted_files,
@@ -190,12 +191,14 @@ module EtGdsDesignSystem
         end
       end
 
-      def normalize_upload_button(attribute, upload_button)
-        case upload_button
-        when TrueClass then __upload_button_text(attribute)
+      def normalize_text_argument(attribute, arg, i18n_key)
+        case arg
+        when TrueClass then @template.t(".#{attribute}.#{i18n_key}", raise: true)
         when FalseClass then nil
-        else upload_button
+        else arg
         end
+      rescue I18n::MissingTranslationData
+        nil
       end
 
       def __hint_hash(attribute)
