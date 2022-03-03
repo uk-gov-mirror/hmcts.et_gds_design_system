@@ -118,7 +118,7 @@ const initDropzone = (node, type, acceptedFiles, removeFileButtonText, attribute
         alert("Too many files")
       });
       this.on("removedfile", function () {
-        node.querySelectorAll("*[data-submit-key]").forEach((inputEl) => inputEl.setAttribute('value', null))
+        node.querySelectorAll("*[data-submit-key]").forEach((inputEl) => inputEl.removeAttribute('value'))
       });
       this.on('sending', (file, xhr) => {
         // Source: https://github.com/enyo/dropzone/issues/590#issuecomment-51498225

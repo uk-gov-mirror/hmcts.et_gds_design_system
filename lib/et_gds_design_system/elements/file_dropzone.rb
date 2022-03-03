@@ -39,7 +39,9 @@ module EtGdsDesignSystem
       private
 
       def file
+        id = field_id(link_errors: true)
         tag.div(class: 'dropzone',
+                id: id,
                 data: {
                   module: 'et-gds-design-system-dropzone-uploader',
                   attribute_name: @attribute_name,
@@ -62,14 +64,22 @@ module EtGdsDesignSystem
                       end,
                       @builder.fields_for(@attribute_name) do |f|
                         safe_join [
-                                    f.hidden_field(:path, data: { submit_key: 'path' }),
-                                    f.hidden_field(:filename, data: { submit_key: 'filename' }),
-                                    f.hidden_field(:content_type, data: { submit_key: 'content_type' })
+                                    hidden_field_for(:path, form_builder: f),
+                                    hidden_field_for(:filename, form_builder: f),
+                                    hidden_field_for(:content_type, form_builder: f)
                                   ]
                       end
           ]
         end
       end
+
+      def hidden_field_for(key, form_builder: )
+        attribute_value = @builder.object.send(@attribute_name)
+        options = { data: { submit_key: key.to_s } }
+        options[:value] = attribute_value[key.to_s] unless attribute_value.nil? || attribute_value[key.to_s].nil?
+        form_builder.hidden_field(key, options)
+      end
+
     end
   end
 end
