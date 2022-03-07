@@ -1,6 +1,8 @@
 import RevealOnRadioButton from './components/RevealOnRadioButton'
+import DropzoneUploader from "./components/DropzoneUploader";
 const Components = {
-  RevealOnRadioButton: RevealOnRadioButton
+  RevealOnRadioButton: RevealOnRadioButton,
+  DropzoneUploader: DropzoneUploader
 };
 
 export default Components;

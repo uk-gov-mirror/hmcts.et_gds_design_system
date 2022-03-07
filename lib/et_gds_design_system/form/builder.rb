@@ -2,6 +2,7 @@
 
 require "govuk_design_system_formbuilder"
 require "et_gds_design_system/elements/date"
+require "et_gds_design_system/elements/file_dropzone"
 module EtGdsDesignSystem
   module Form
     class Builder < SimpleDelegator
@@ -106,6 +107,20 @@ module EtGdsDesignSystem
       end
       deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
 
+      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, upload_button: true, remove_file_button: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
+        Elements::FileDropzone.new(self,
+                                   object_name,
+                                   attribute, hint: normalize_hint(attribute, hint),
+                                   label: normalize_label(attribute, label, optional),
+                                   button_text: normalize_text_argument(attribute, upload_button, 'button_text'),
+                                   remove_file_button_text: normalize_text_argument(attribute, remove_file_button, 'remove_file_button_text'),
+                                   caption: caption,
+                                   form_group: form_group,
+                                   accepted_files: accepted_files,
+                                   type: type,
+                                   **kw_args).html
+      end
+
       def check_box(attribute, *args, label: true, hint: true, optional: false, **kw_args)
         __getobj__.govuk_check_box(attribute, *args, label: normalize_check_box_label(attribute, label, optional), hint: normalize_hint(attribute, hint), **kw_args)
       end
@@ -176,6 +191,16 @@ module EtGdsDesignSystem
         end
       end
 
+      def normalize_text_argument(attribute, arg, i18n_key)
+        case arg
+        when TrueClass then @template.t(".#{attribute}.#{i18n_key}", raise: true)
+        when FalseClass then nil
+        else arg
+        end
+      rescue I18n::MissingTranslationData
+        nil
+      end
+
       def __hint_hash(attribute)
         hint_text = __hint_text(attribute)
         return {} if hint_text.nil?
@@ -185,6 +210,12 @@ module EtGdsDesignSystem
 
       def __hint_text(attribute)
         @template.t(".#{attribute}.hint", raise: true)
+      rescue I18n::MissingTranslationData
+        nil
+      end
+
+      def __upload_button_text(attribute)
+        @template.t(".#{attribute}.button_text", raise: true)
       rescue I18n::MissingTranslationData
         nil
       end
