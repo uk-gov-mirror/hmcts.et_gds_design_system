@@ -2,7 +2,7 @@ import Dropzone from "dropzone";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import SparkMD5 from 'spark-md5';
-
+import previewTemplate from "./DropzoneUploader/preview-template.html";
 Dropzone.autoDiscover = false
 
 let uploadKey, dropzoneUploadForm;
@@ -107,8 +107,14 @@ function getFileHash(file, headerCallback) {
  * @param attributeName - The attribute name from rails
  * @returns {}
  */
-const initDropzone = (node, type, acceptedFiles, removeFileButtonText, attributeName) => {
+const initDropzone = (node, type, acceptedFiles, attributeName) => {
   let provider;
+  const extractPreviewContent = () => {
+    const templateContainer = node.querySelector('*[data-gds-dropzone-uploader-preview-template]')
+    templateContainer.parentElement.removeChild(templateContainer)
+    return templateContainer.innerHTML
+  }
+
   const DROPZONE_OPTIONS = {
     url: '/',
     init: function () {
@@ -140,14 +146,14 @@ const initDropzone = (node, type, acceptedFiles, removeFileButtonText, attribute
         existingFile.previewElement.classList.add('dz-complete');
       }
     },
-    // Set "Remove File" string by locale
-    dictRemoveFile: removeFileButtonText,
     // Only one file goes to the bucket via the URL
     parallelUploads: 1,
     uploadMultiple: false,
     // Set acceptance criteria, one .rtf file
     maxFiles: 1,
     acceptedFiles: acceptedFiles,
+    clickable: '*[data-gds-dropzone-upload-button]',
+    previewTemplate: extractPreviewContent(),
     // If file passes the accept check, call the API and use the returned values for the upload process
     accept: function (file, done) {
       // check cloud provider in this section
@@ -162,7 +168,7 @@ const initDropzone = (node, type, acceptedFiles, removeFileButtonText, attribute
     // TODO: RST-1676 Default this to 'put' and remove the assignment within the buildUpload if statement
     method: "post",
     // Add a link to remove files that were erroneously uploaded
-    addRemoveLinks: true,
+    addRemoveLinks: false,
     success: function (file) {
       showButton();
       // Take upload URL and pass it into the second form
@@ -190,8 +196,8 @@ const DropzoneUploader = {
   init: () => {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-dropzone-uploader"]'));
     nodes.forEach((node) => {
-      const { type, acceptedFiles, removeFileButtonText, attributeName } = node.dataset
-      initDropzone(node, type, acceptedFiles, removeFileButtonText, attributeName);
+      const { type, acceptedFiles, attributeName } = node.dataset
+      initDropzone(node, type, acceptedFiles, attributeName);
     })
   }
 }

@@ -17,7 +17,7 @@ module EtGdsDesignSystem
       include ::GOVUKDesignSystemFormBuilder::Traits::Supplemental
       include ::GOVUKDesignSystemFormBuilder::Traits::HTMLAttributes
 
-      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, remove_file_button_text: nil, caption:, form_group:, accepted_files: nil, type: nil, **kwargs, &block)
+      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, remove_file_button_text: nil, file_selected_text: nil, caption:, form_group:, accepted_files: nil, type: nil, template:, **kwargs, &block)
         super(builder, object_name, attribute_name, &block)
 
         @label = label
@@ -28,6 +28,8 @@ module EtGdsDesignSystem
         @accepted_files = accepted_files
         @button_text = button_text
         @remove_file_button_text = remove_file_button_text
+        @file_selected_text = file_selected_text
+        @template = template
       end
 
       def html
@@ -38,48 +40,21 @@ module EtGdsDesignSystem
 
       private
 
+      attr_reader :template
+
       def file
-        id = field_id(link_errors: true)
-        tag.div(class: 'dropzone',
-                id: id,
-                data: {
-                  module: 'et-gds-design-system-dropzone-uploader',
-                  attribute_name: @attribute_name,
-                  remove_file_button_text: @remove_file_button_text,
-                  type: @type,
-                  accepted_files: @accepted_files&.join(',')
-                }) do
-          safe_join [
-                      tag.div(class: 'dz-message grid-row') do
-                        safe_join [
-                                    tag.div(class: 'column-one-third arrow-icon') do
-                                      tag.p
-                                    end,
-                                    tag.div(class: 'column-one-half') do
-                                      tag.button(type: 'button', class: 'govuk-button govuk-button--secondary', data: { 'auto-hide': true }) do
-                                        @button_text
-                                      end if @button_text
-                                    end
-                                  ]
-                      end,
-                      @builder.fields_for(@attribute_name) do |f|
-                        safe_join [
-                                    hidden_field_for(:path, form_builder: f),
-                                    hidden_field_for(:filename, form_builder: f),
-                                    hidden_field_for(:content_type, form_builder: f)
-                                  ]
-                      end
-          ]
-        end
+        template.render partial: 'et_gds_design_system/elements/file_dropzone/template',
+                        locals: {
+                          id: field_id(link_errors: true),
+                          attribute_name: @attribute_name,
+                          remove_file_button_text: @remove_file_button_text,
+                          button_text: @button_text,
+                          file_selected_text: @file_selected_text,
+                          type: @type,
+                          accepted_files: @accepted_files,
+                          builder: @builder
+                        }
       end
-
-      def hidden_field_for(key, form_builder: )
-        attribute_value = @builder.object.send(@attribute_name)
-        options = { data: { submit_key: key.to_s } }
-        options[:value] = attribute_value[key.to_s] unless attribute_value.nil? || attribute_value[key.to_s].nil?
-        form_builder.hidden_field(key, options)
-      end
-
     end
   end
 end

@@ -4,5 +4,5 @@ const Components = {
   RevealOnRadioButton: RevealOnRadioButton,
   DropzoneUploader: DropzoneUploader
 };
-
+import './components/DropzoneUploader/stylesheet.scss'
 export default Components;

@@ -107,17 +107,19 @@ module EtGdsDesignSystem
       end
       deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
 
-      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, upload_button: true, remove_file_button: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
+      def file_dropzone_field(attribute, *args, label: true, hint: true, optional: false, upload_button: true, remove_file_button: true, file_selected_text: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args, &block)
         Elements::FileDropzone.new(self,
                                    object_name,
                                    attribute, hint: normalize_hint(attribute, hint),
                                    label: normalize_label(attribute, label, optional),
                                    button_text: normalize_text_argument(attribute, upload_button, 'button_text'),
                                    remove_file_button_text: normalize_text_argument(attribute, remove_file_button, 'remove_file_button_text'),
+                                   file_selected_text: normalize_text_argument(attribute, file_selected_text, 'file_selected_text'),
                                    caption: caption,
                                    form_group: form_group,
                                    accepted_files: accepted_files,
                                    type: type,
+                                   template: template,
                                    **kw_args).html
       end
 
@@ -143,6 +145,8 @@ module EtGdsDesignSystem
       end
 
       private
+
+      attr_reader :template
 
       def __field_name_for(attribute)
         text_input = capture do
