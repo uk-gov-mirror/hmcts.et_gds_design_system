@@ -196,7 +196,9 @@ const DropzoneUploader = {
   init: () => {
     const nodes = Array.from(document.querySelectorAll('[data-module="et-gds-design-system-dropzone-uploader"]'));
     nodes.forEach((node) => {
-      const { type, acceptedFiles, attributeName } = node.dataset
+      const type = node.getAttribute('data-type')
+      const acceptedFiles = node.getAttribute('data-accepted-files')
+      const attributeName = node.getAttribute('data-attribute-name')
       initDropzone(node, type, acceptedFiles, attributeName);
     })
   }
