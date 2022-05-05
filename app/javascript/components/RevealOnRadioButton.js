@@ -53,9 +53,8 @@ function setInitialStates(nodes) {
 function isCorrectValue(node, selector, value) {
   let isChecked = false;
   document.querySelectorAll(selector).forEach(function(radioButton) {
-    if(radioButton.value == value  && radioButton.checked) {
+    if((radioButton.value === value || value.includes(radioButton.value))  && radioButton.checked) {
       isChecked = true
-      return;
     }
 
   });
