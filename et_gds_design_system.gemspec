@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rails", ">= 6.0"
-  spec.add_dependency 'govuk_design_system_formbuilder', '~> 2.1'
+  spec.add_dependency 'govuk_design_system_formbuilder', '~> 3.0'
   spec.add_dependency 'webpacker', '~> 5.0'
   spec.add_dependency 'rack-proxy', '~> 0.6'
 
