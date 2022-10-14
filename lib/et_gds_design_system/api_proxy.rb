@@ -16,6 +16,8 @@ module EtGdsDesignSystem
       uri.host = et_api_uri.host
       uri.port = et_api_uri.port
       uri.to_s
+    rescue URI::InvalidURIError
+      raise "Invalid URL - '#{url}'"
     end
 
     def et_api_uri
