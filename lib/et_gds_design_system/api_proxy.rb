@@ -3,21 +3,17 @@ require 'rack-proxy'
 module EtGdsDesignSystem
   class ApiProxy < Rack::Proxy
     def rewrite_env(env)
-      env.merge 'REQUEST_URI' => correct_host(env['REQUEST_URI']),
+      env.merge 'REQUEST_URI' => modified_url_for(env),
                 'HTTP_HOST' => "#{et_api_uri.host}:#{et_api_uri.port}",
                 'PATH_INFO' => ''
     end
 
     private
 
-    def correct_host(url)
-      uri = URI.parse(url)
-      uri.scheme = et_api_uri.scheme
-      uri.host = et_api_uri.host
-      uri.port = et_api_uri.port
+    def modified_url_for(env)
+      uri = et_api_uri.clone
+      uri.path = env['REQUEST_PATH']
       uri.to_s
-    rescue URI::InvalidURIError
-      raise "Invalid URL - '#{url}'"
     end
 
     def et_api_uri
