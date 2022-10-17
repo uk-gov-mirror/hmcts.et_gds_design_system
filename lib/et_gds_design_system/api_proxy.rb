@@ -11,8 +11,6 @@ module EtGdsDesignSystem
     private
 
     def modified_url_for(env)
-      Rails.logger.info "IMPORTANT DEBUG - env is #{JSON.pretty_generate(env)}"
-      Rails.logger.info " AND et_api_uri is #{et_api_uri}"
       uri = et_api_uri.clone
       uri.path = env['REQUEST_PATH'] || '/'
       uri.to_s
