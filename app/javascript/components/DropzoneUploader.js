@@ -116,7 +116,7 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
   }
 
   const DROPZONE_OPTIONS = {
-    url: '/',
+    url: '/api/v2/create_blob',
     init: function () {
       this.on("maxfilesexceeded", function (file) {
         // TODO: RST-1220 - Error Handling:
@@ -136,6 +136,13 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
           };
         }
       });
+      this.on('success', (file, decodedResponse, event) => {
+        uploadKey = decodedResponse.data.key
+        node.querySelector("*[data-submit-key=path]").setAttribute('value', uploadKey)
+        node.querySelector("*[data-submit-key=filename]").setAttribute('value', file.name)
+        node.querySelector("*[data-submit-key=content_type]").setAttribute('value', file.type)
+        showButton();
+      })
 
       let filenameElement = node.querySelector("*[data-submit-key=filename]");
       let filenameValue = filenameElement.getAttribute('value');
@@ -154,28 +161,11 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
     acceptedFiles: acceptedFiles,
     clickable: '*[data-gds-dropzone-upload-button]',
     previewTemplate: extractPreviewContent(),
-    // If file passes the accept check, call the API and use the returned values for the upload process
-    accept: function (file, done) {
-      // check cloud provider in this section
-      buildUpload(function (presignedData) {
-        provider = presignedData.meta.cloud_provider;
-        if (provider === 'azure') {
-          setupAzure(file, presignedData, done);
-        }
-      });
-    },
     // Use POST by default for AWS
     // TODO: RST-1676 Default this to 'put' and remove the assignment within the buildUpload if statement
     method: "post",
     // Add a link to remove files that were erroneously uploaded
     addRemoveLinks: false,
-    success: function (file) {
-      showButton();
-      // Take upload URL and pass it into the second form
-      node.querySelector("*[data-submit-key=path]").setAttribute('value', uploadKey)
-      node.querySelector("*[data-submit-key=filename]").setAttribute('value', file.name)
-      node.querySelector("*[data-submit-key=content_type]").setAttribute('value', file.type)
-    },
     canceled: function (file) {
       showButton()
       node.querySelectorAll("*[data-submit-key]").forEach((inputEl) => inputEl.setAttribute('value', null))
