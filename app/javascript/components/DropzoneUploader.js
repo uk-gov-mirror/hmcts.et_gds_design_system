@@ -137,11 +137,16 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
         }
       });
       this.on('success', (file, decodedResponse, event) => {
-        uploadKey = decodedResponse.data.key
-        node.querySelector("*[data-submit-key=path]").setAttribute('value', uploadKey)
-        node.querySelector("*[data-submit-key=filename]").setAttribute('value', file.name)
-        node.querySelector("*[data-submit-key=content_type]").setAttribute('value', file.type)
+        node.querySelector("*[data-submit-key=path]").setAttribute('value', decodedResponse.data.key)
+        node.querySelector("*[data-submit-key=filename]").setAttribute('value', decodedResponse.data.filename)
+        node.querySelector("*[data-submit-key=content_type]").setAttribute('value', decodedResponse.data.content_type)
         showButton();
+      })
+      this.on('error', (file, decodedResponse, xhr) => {
+        if(decodedResponse.status !== 'not_accepted') { return }
+
+        const message = decodedResponse.errors.map((error) => error.title).join('<br />')
+        document.querySelector("*[data-dz-errormessage]").textContent = message;
       })
 
       let filenameElement = node.querySelector("*[data-submit-key=filename]");
