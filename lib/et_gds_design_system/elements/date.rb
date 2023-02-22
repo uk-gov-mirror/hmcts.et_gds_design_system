@@ -18,7 +18,8 @@ module EtGdsDesignSystem
             nil
           end
         else
-          fail(ArgumentError, "invalid Date-like object: must be a Date, Time, DateTime or Hash in MULTIPARAMETER_KEY format")
+          raise(ArgumentError,
+                'invalid Date-like object: must be a Date, Time, DateTime or Hash in MULTIPARAMETER_KEY format')
         end
       end
     end

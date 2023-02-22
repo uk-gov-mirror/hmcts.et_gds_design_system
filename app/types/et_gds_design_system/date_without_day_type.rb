@@ -1,6 +1,5 @@
 module EtGdsDesignSystem
   class DateWithoutDayType < ActiveRecord::Type::Date
-
     private
 
     def fallback_string_to_date(string)

@@ -17,7 +17,8 @@ module EtGdsDesignSystem
       include ::GOVUKDesignSystemFormBuilder::Traits::Supplemental
       include ::GOVUKDesignSystemFormBuilder::Traits::HTMLAttributes
 
-      def initialize(builder, object_name, attribute_name, hint:, label:, button_text: nil, remove_file_button_text: nil, file_selected_text: nil, caption:, form_group:, accepted_files: nil, type: nil, template:, **kwargs, &block)
+      def initialize(builder, object_name, attribute_name, hint:, label:, caption:, form_group:, template:, button_text: nil,
+                     remove_file_button_text: nil, file_selected_text: nil, accepted_files: nil, type: nil, **kwargs, &block)
         super(builder, object_name, attribute_name, &block)
 
         @label = label

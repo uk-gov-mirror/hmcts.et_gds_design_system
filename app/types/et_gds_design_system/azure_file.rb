@@ -3,7 +3,9 @@ module EtGdsDesignSystem
     private
 
     def cast_value(value)
-      return nil unless value.is_a?(Hash) && value['filename'].present? && value['path'].present? && value['content_type'].present?
+      unless value.is_a?(Hash) && value['filename'].present? && value['path'].present? && value['content_type'].present?
+        return nil
+      end
 
       value
     end

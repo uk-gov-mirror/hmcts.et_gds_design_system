@@ -13,9 +13,9 @@
   <h2>Text Field</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_text_field :text_field_value, label: {text: 'Text field label'}, hint_text: 'Text field hint' %>
+      <%= f.text_field :text_field_value, label: {text: 'Text field label'}, hint: 'Text field hint' %>
     <% else %>
-      <%= f.govuk_text_field :text_field_value, label: {text: 'Text field label'} %>
+      <%= f.text_field :text_field_value, label: {text: 'Text field label'} %>
 
     <% end %>
   </div>
@@ -23,9 +23,9 @@
   <h2>Text Area</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_text_area :text_area_value, label: { text: 'Text area label'}, hint_text: 'Text area hint' %>
+      <%= f.text_area :text_area_value, label: { text: 'Text area label'}, hint: 'Text area hint' %>
     <% else %>
-      <%= f.govuk_text_area :text_area_value, label: { text: 'Text area label'} %>
+      <%= f.text_area :text_area_value, label: { text: 'Text area label'} %>
     <% end %>
   </div>
 
@@ -34,9 +34,9 @@
 
   <div>
     <% if show_hint? %>
-      <%= f.govuk_date_field :date_field_value, label: { text: 'Date field label'}, hint_text: 'Date field hint' %>
+      <%= f.date_field :date_field_value, label: { text: 'Date field label'}, hint: 'Date field hint' %>
     <% else %>
-      <%= f.govuk_date_field :date_field_value, label: { text: 'Date field label'} %>
+      <%= f.date_field :date_field_value, label: { text: 'Date field label'} %>
     <% end %>
   </div>
 
@@ -44,9 +44,9 @@
 
   <div>
     <% if show_hint? %>
-      <%= f.govuk_collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'}, hint_text: 'Collection radio buttons hint' %>
+      <%= f.collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'}, hint: 'Collection radio buttons hint' %>
     <% else %>
-      <%= f.govuk_collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'} %>
+      <%= f.collection_radio_buttons :collection_radio_buttons_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection radio buttons label'} %>
     <% end %>
   </div>
 
@@ -54,18 +54,18 @@
   <h2>Phone Field</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_phone_field :phone_field_value, label: {text: 'Phone field label'}, hint_text: 'Phone field hint' %>
+      <%= f.phone_field :phone_field_value, label: {text: 'Phone field label'}, hint: 'Phone field hint' %>
     <% else %>
-      <%= f.govuk_phone_field :phone_field_value, label: {text: 'Phone field label'} %>
+      <%= f.phone_field :phone_field_value, label: {text: 'Phone field label'} %>
     <% end %>
   </div>
 
   <h2>Email Field</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_email_field :email_field_value, label: {text: 'Email field label'}, hint_text: 'Email field hint' %>
+      <%= f.email_field :email_field_value, label: {text: 'Email field label'}, hint: 'Email field hint' %>
     <% else %>
-      <%= f.govuk_email_field :email_field_value, label: {text: 'Email field label'} %>
+      <%= f.email_field :email_field_value, label: {text: 'Email field label'} %>
     <% end %>
   </div>
 
@@ -73,15 +73,15 @@
 
   <div>
     <% if show_hint? %>
-      <%= f.govuk_collection_check_boxes :collection_check_boxes_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection check boxes label'}, hint_text: 'Collection check boxes hint' %>
+      <%= f.collection_check_boxes :collection_check_boxes_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection check boxes label'}, hint: 'Collection check boxes hint' %>
     <% else %>
-      <%= f.govuk_collection_check_boxes :collection_check_boxes_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection check boxes label'} %>
+      <%= f.collection_check_boxes :collection_check_boxes_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: { text: 'Collection check boxes label'} %>
     <% end %>
   </div>
 
   <h2>Fieldset</h2>
   <div>
-    <%= f.govuk_fieldset label: {text: 'Fieldset label'} do %>
+    <%= f.fieldset label: {text: 'Fieldset label'} do %>
       <p>Fieldset inner content</p>
     <% end %>
   </div>
@@ -89,9 +89,9 @@
   <h2>File Field</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_file_field :file_field_value, label: {text: 'File field label'}, hint_text: 'File field hint' %>
+      <%= f.file_field :file_field_value, label: {text: 'File field label'}, hint: 'File field hint' %>
     <% else %>
-      <%= f.govuk_file_field :file_field_value, label: {text: 'File field label'} %>
+      <%= f.file_field :file_field_value, label: {text: 'File field label'} %>
 
     <% end %>
   </div>
@@ -99,15 +99,15 @@
   <h2>Collection Select</h2>
   <div>
     <% if show_hint? %>
-      <%= f.govuk_collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'}, hint_text: 'Collection select hint' %>
+      <%= f.collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'}, hint: 'Collection select hint' %>
     <% else %>
-      <%= f.govuk_collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'} %>
+      <%= f.collection_select :collection_select_value, [['post', 'Post'], ['email', 'Email']], :first, :last, label: {text: 'Collection select label'} %>
 
     <% end %>
   </div>
 
   <h2>Submit Button</h2>
-    <%= f.govuk_submit 'Submit' %>
+    <%= f.submit 'Submit' %>
 
 <% end %>
 
