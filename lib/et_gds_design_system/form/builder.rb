@@ -23,9 +23,9 @@ module EtGdsDesignSystem
       deprecate govuk_date_field: 'govuk_date_field is deprecated - please use date_field instead and read the documentation as it makes your code simpler'
 
       def date_field(attribute, *_args, label: true, hint: true, optional: false, caption: {}, date_of_birth: false,
-                     omit_day: false, form_group: {}, wildcards: false, **kw_args, &block)
+                     omit_day: false, form_group: {}, wildcards: false, maxlength_enabled: false, **kw_args, &block)
         Elements::Date.new(self, object_name, attribute,
-                           hint: normalize_hint(attribute, hint), legend: normalize_label(attribute, label, optional), caption: caption, date_of_birth: date_of_birth, omit_day: omit_day, form_group: form_group, wildcards: wildcards, **kw_args, &block).html
+                           hint: normalize_hint(attribute, hint), legend: normalize_label(attribute, label, optional), caption: caption, date_of_birth: date_of_birth, omit_day: omit_day, form_group: form_group, wildcards: wildcards, maxlength_enabled: maxlength_enabled, **kw_args, &block).html
       end
 
       def govuk_collection_radio_buttons(*args, label:, **kw_args)

@@ -1,6 +1,6 @@
 require 'capybara'
 Capybara.configure do |config|
-  driver = ENV.fetch('DRIVER', 'chromedriver').to_sym
+  driver = ENV.fetch('DRIVER', 'chromedriver_headless').to_sym
   config.javascript_driver = driver
   config.ignore_hidden_elements = false
   config.visible_text_only = true

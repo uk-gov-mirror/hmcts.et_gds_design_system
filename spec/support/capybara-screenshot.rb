@@ -34,6 +34,11 @@ Capybara::Screenshot.register_driver(:chromedriver) do |driver, path|
     driver.browser.save_screenshot(path)
   end
 end
+Capybara::Screenshot.register_driver(:chromedriver_headless) do |driver, path|
+  ::EtGdsDesignSystem::Test::FullScreenshot.with_resizing do
+    driver.browser.save_screenshot(path)
+  end
+end
 Capybara::Screenshot.register_driver(:firefoxdriver) do |driver, path|
   ::EtGdsDesignSystem::Test::FullScreenshot.with_resizing do
     driver.browser.save_screenshot(path)
