@@ -34,9 +34,9 @@
 
   <div>
     <% if show_hint? %>
-      <%= f.date_field :date_field_value, label: { text: 'Date field label'}, hint: 'Date field hint' %>
+      <%= f.date_field :date_field_value, maxlength_enabled: true, label: { text: 'Date field label'}, hint: 'Date field hint' %>
     <% else %>
-      <%= f.date_field :date_field_value, label: { text: 'Date field label'} %>
+      <%= f.date_field :date_field_value, maxlength_enabled: true, label: { text: 'Date field label'} %>
     <% end %>
   </div>
 
@@ -92,6 +92,16 @@
       <%= f.file_field :file_field_value, label: {text: 'File field label'}, hint: 'File field hint' %>
     <% else %>
       <%= f.file_field :file_field_value, label: {text: 'File field label'} %>
+
+    <% end %>
+  </div>
+
+  <h2>File Dropzone Field</h2>
+  <div>
+    <% if show_hint? %>
+      <%= f.file_dropzone_field :file_dropzone_field_value, label: {text: 'File dropzone field label'}, accepted_files: ['.txt', '.rb'], upload_button: 'Upload', remove_file_button: true, hint: 'File dropzone field hint' %>
+    <% else %>
+      <%= f.file_dropzone_field :file_dropzone_field_value, label: {text: 'File dropzone field label'}, accepted_files: ['.txt', '.rb'], upload_button: 'Upload', remove_file_button: true %>
 
     <% end %>
   </div>

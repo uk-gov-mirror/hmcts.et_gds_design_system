@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount EtGdsDesignSystem::ApiProxy.new(backend: "#{Rails.application.config.et_gds_design_system.api_url}", streaming: false),
-        at: '/api/v2/create_blob'
-  mount EtGdsDesignSystem::ApiProxy.new(backend: "#{Rails.application.config.et_gds_design_system.api_url}", streaming: false),
-        at: '/api/v2/blobs/:signed_id/*filename'
+  post '/api/v2/create_blob', to: 'et_gds_design_system/blobs#create'
+  get '/api/v2/blobs/:signed_id/*filename', to: 'et_gds_design_system/blobs#show'
 end

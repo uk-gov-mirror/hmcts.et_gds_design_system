@@ -1,6 +1,6 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
-
+require 'dotenv-rails'
 require_relative "../test/dummy/config/environment"
 require "rails/test_help"
 

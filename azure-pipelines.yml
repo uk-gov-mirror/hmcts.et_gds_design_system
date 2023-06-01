@@ -8,16 +8,28 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-
+variables:
+  ruby_version: "2.7.7"
+  nodejs_version: "14.x"
 steps:
-- task: UseRubyVersion@0
-  inputs:
-    versionSpec: '>= 2.5'
-
-- script: |
-    gem install bundler
-    bundle install --retry=3 --jobs=4
-  displayName: 'bundle install'
-
-- script: bundle exec rake
-  displayName: 'bundle exec rake'
+  - task: NodeTool@0
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '14.x'
+  - script: |
+      sudo apt-get remove nodejs
+      sudo apt-get remove npm
+      sudo apt-get update
+      sudo apt-get install -y gnupg2 curl
+      gpg2 --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+      curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+      curl -sSL https://get.rvm.io | bash -s stable
+      source ~/.rvm/scripts/rvm
+      rvm install 2.7.7
+      gem install bundler
+      bundle install
+    displayName: 'Install Ruby and dependencies'
+  - script: |
+      bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile"
+      bash -lc "bundle exec rspec"
+    displayName: 'Run RSpec tests with asset precompilation'

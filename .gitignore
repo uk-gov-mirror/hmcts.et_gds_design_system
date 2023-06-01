@@ -9,3 +9,4 @@ tmp
 public/packs
 test/dummy/public/packs
 test/dummy/public/packs-test
+.env*

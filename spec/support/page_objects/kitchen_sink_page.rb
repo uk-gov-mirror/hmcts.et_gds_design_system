@@ -73,6 +73,11 @@ class KitchenSinkPage < ::SitePrism::Page
   #   @return [EtTestHelpers::Components::FileField] The site prism section
   section :govuk_file_field, govuk_component(:file_field), :govuk_file_field, 'File field label'
 
+  # @!method govuk_file_dropzone_field
+  #   A govuk file dropzone field component wrapping the input, label, hint etc..
+  #   @return [EtTestHelpers::Components::FileDropzoneField] The site prism section
+  section :govuk_file_dropzone_field, govuk_component(:file_dropzone_field), :govuk_file_dropzone_field, 'File dropzone field label'
+
   # @!method govuk_error_summary
   #   A govuk error summary component...
   #   @return [EtTestHelpers::Components::ErrorSummary] The site prism section

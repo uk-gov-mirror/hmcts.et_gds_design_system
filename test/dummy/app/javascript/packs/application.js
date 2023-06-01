@@ -5,10 +5,12 @@
 
 require("@rails/ujs").start()
 require("turbolinks").start()
-import {EtGdsDesignSystem } from "et_gds_design_system"
+import { EtGdsDesignSystem, Components } from "et_gds_design_system"
 import "et_gds_design_system/stylesheet"
 EtGdsDesignSystem.initAll();
 
+const { DropzoneUploader } = Components;
+window.DropzoneUploader = DropzoneUploader;
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
