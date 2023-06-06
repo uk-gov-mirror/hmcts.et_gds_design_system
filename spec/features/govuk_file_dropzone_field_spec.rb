@@ -30,7 +30,7 @@ RSpec.describe 'govuk_file_dropzone_field', type: :feature, js: true do
   it 'has errors when added' do
     test_page.load
     test_page.with_errors
-    test_page.govuk_file_dropzone_field.assert_error_message("File dropzone field error")
+    test_page.govuk_file_dropzone_field.assert_error_message('File dropzone field error')
   end
 
   context 'with positive response from backend' do
@@ -52,6 +52,63 @@ RSpec.describe 'govuk_file_dropzone_field', type: :feature, js: true do
       test_page.load
       test_page.govuk_file_dropzone_field.set(file)
       test_page.govuk_file_dropzone_field.assert_upload_error_message('The uploaded file is invalid in some way')
+    end
+  end
+
+  context 'with html error response from api that cannot be parsed' do
+    let(:html) do
+      <<-HTML
+        <html>
+          <body>
+            <h1>Internal server error</h1>
+            <p>Somethign went really really bad</p>
+          </body>
+        </html>
+      HTML
+    end
+    let(:response) do
+      {
+        headers: { 'Content-Type': 'text/html' },
+        body: html,
+        status: 500
+      }
+    end
+    let!(:stub) { EtTestHelpers::RSpec.stub_create_blob_to_azure_failure(response: response) }
+
+    it 'can be set and error returned' do
+      file = __FILE__
+      test_page.load
+      test_page.govuk_file_dropzone_field.set(file)
+      test_page.govuk_file_dropzone_field.assert_upload_error_message('Something has gone wrong. Your file has not been uploaded')
+    end
+  end
+
+  context 'with html error response from the backend application that cannot be parsed' do
+    let(:html) do
+      <<-HTML
+        <html>
+          <body>
+            <h1>Internal server error</h1>
+            <p>Somethign went really really bad</p>
+          </body>
+        </html>
+      HTML
+    end
+    let(:response) do
+      {
+        headers: { 'Content-Type': 'text/html' },
+        body: html,
+        code: 500
+      }
+    end
+    let(:create_blob_url) { '/test/create_blob/html_error' }
+
+    it 'can be set and error returned' do
+      file = __FILE__
+      test_page.load(query: { create_blob_url: create_blob_url })
+      test_page.govuk_file_dropzone_field.set(file)
+      sleep 1
+      test_page.govuk_file_dropzone_field.assert_upload_error_message('Something has gone wrong. Your file has not been uploaded')
     end
   end
 end

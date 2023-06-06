@@ -1,7 +1,7 @@
 # A page object representing the 'Kitchen Sink' page for testing
 class KitchenSinkPage < ::SitePrism::Page
   include EtTestHelpers::Page
-  set_url '/kitchen_sinks/new'
+  set_url '/kitchen_sinks/new{?query*}'
 
   # Shows hints on all form components
   def with_hints
@@ -41,7 +41,8 @@ class KitchenSinkPage < ::SitePrism::Page
   # @!method govuk_radios
   #   A govuk radio button component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-  section :govuk_collection_radio_buttons, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, 'Collection radio buttons label'
+  section :govuk_collection_radio_buttons, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons,
+          'Collection radio buttons label'
 
   # @!method govuk_phone_field
   #   A govuk phone field component wrapping the input, label, hint etc..
@@ -56,12 +57,14 @@ class KitchenSinkPage < ::SitePrism::Page
   # @!method govuk_check_boxes
   #   A govuk check boxes component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-  section :govuk_collection_check_boxes, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, 'Collection check boxes label'
+  section :govuk_collection_check_boxes, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes,
+          'Collection check boxes label'
 
   # @!method govuk_collection_select
   #   A govukselect component wrapping the select, label, hint etc..
   #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
-  section :govuk_collection_select, govuk_component(:collection_select), :govuk_collection_select, 'Collection select label'
+  section :govuk_collection_select, govuk_component(:collection_select), :govuk_collection_select,
+          'Collection select label'
 
   # @!method govuk_fieldset
   #   A govuk fieldset component wrapping the input, label, hint etc..
@@ -76,7 +79,8 @@ class KitchenSinkPage < ::SitePrism::Page
   # @!method govuk_file_dropzone_field
   #   A govuk file dropzone field component wrapping the input, label, hint etc..
   #   @return [EtTestHelpers::Components::FileDropzoneField] The site prism section
-  section :govuk_file_dropzone_field, govuk_component(:file_dropzone_field), :govuk_file_dropzone_field, 'File dropzone field label'
+  section :govuk_file_dropzone_field, govuk_component(:file_dropzone_field), :govuk_file_dropzone_field,
+          'File dropzone field label'
 
   # @!method govuk_error_summary
   #   A govuk error summary component...
@@ -87,8 +91,6 @@ class KitchenSinkPage < ::SitePrism::Page
   #   A govuk submit button component...
   #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
   section :govuk_submit, govuk_component(:submit), :govuk_submit, 'Submit'
-
-  private
 
   element :submitted_element, 'p', text: 'Form Submitted'
 end

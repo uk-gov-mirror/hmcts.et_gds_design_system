@@ -12,7 +12,7 @@
     "turbolinks": "^5.2.0",
     "uuid": "^8.3.2"
   },
-  "version": "5.0.5",
+  "version": "5.4.1",
   "main": "index.js",
   "devDependencies": {
     "webpack-dev-server": "^3.10.3"

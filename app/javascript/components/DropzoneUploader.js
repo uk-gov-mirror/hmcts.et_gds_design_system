@@ -11,38 +11,6 @@ function setUploadUrl(url) {
   dropzoneUploadForm.options.url = url;
 }
 
-function buildUpload(cb) {
-  axios.post(
-    "/api/v2/build_blob",
-    {
-      uuid: uuidv4(),
-      command: "BuildBlob",
-      async: false,
-      data: {
-        preventEmptyData: true
-      }
-    },
-    {
-      responseType: 'json',
-      headers: {
-        'Accept': 'application/json'
-      }
-    }
-  )
-    .then((response) => {
-      cb.apply(this, [response.data]);
-    })
-    .catch(onGetPresignedError)
-}
-
-function onGetPresignedError(error) {
-  /* TODO: RST-1220:
-      Anticipate and handle errors:
-      - Network issue to API (no response)
-      - Network issue to/from Azure/S3 (API responds with bad data)
-  */
-}
-
 function hideButton() {
   document.querySelector("*[data-auto-hide]").style.display = 'none';
 }
@@ -54,7 +22,7 @@ function showButton() {
 
 function setupAzure(file, presignedData, done) {
   dropzoneUploadForm.options.method = 'put';
-  dropzoneUploadForm.options.headers = {"x-ms-blob-type": "BlockBlob"};
+  dropzoneUploadForm.options.headers = { "x-ms-blob-type": "BlockBlob" };
   getFileHash(file, function (hash) {
     dropzoneUploadForm.options.headers["Content-MD5"] = hash;
     uploadKey = presignedData.data.fields.key;
@@ -107,7 +75,7 @@ function getFileHash(file, headerCallback) {
  * @param attributeName - The attribute name from rails
  * @returns {}
  */
-const initDropzone = (node, type, acceptedFiles, attributeName) => {
+const initDropzone = (node, type, acceptedFiles, attributeName, createBlobUrl) => {
   let provider;
   const extractPreviewContent = () => {
     const templateContainer = node.querySelector('*[data-gds-dropzone-uploader-preview-template]')
@@ -116,7 +84,7 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
   }
 
   const DROPZONE_OPTIONS = {
-    url: '/api/v2/create_blob',
+    url: createBlobUrl,
     init: function () {
       this.on("maxfilesexceeded", function (file) {
         // TODO: RST-1220 - Error Handling:
@@ -143,16 +111,20 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
         showButton();
       })
       this.on('error', (file, decodedResponse, xhr) => {
-        if(decodedResponse.status !== 'not_accepted') { return }
+        var message
+        if (decodedResponse.status !== 'not_accepted') {
+          message = 'Something has gone wrong.  Your file has not been uploaded'
+        } else {
+          message = decodedResponse.errors.map((error) => error.title).join('<br />')
+        }
 
-        const message = decodedResponse.errors.map((error) => error.title).join('<br />')
         document.querySelector("*[data-dz-errormessage]").textContent = message;
       })
 
       let filenameElement = node.querySelector("*[data-submit-key=filename]");
       let filenameValue = filenameElement.getAttribute('value');
       if (filenameValue) {
-        let existingFile = {name: filenameValue, type: type};
+        let existingFile = { name: filenameValue, type: type };
         this.options.addedfile.call(this, existingFile);
         existingFile.previewElement.classList.add('dz-success');
         existingFile.previewElement.classList.add('dz-complete');
@@ -166,10 +138,7 @@ const initDropzone = (node, type, acceptedFiles, attributeName) => {
     acceptedFiles: acceptedFiles,
     clickable: '*[data-gds-dropzone-upload-button]',
     previewTemplate: extractPreviewContent(),
-    // Use POST by default for AWS
-    // TODO: RST-1676 Default this to 'put' and remove the assignment within the buildUpload if statement
     method: "post",
-    // Add a link to remove files that were erroneously uploaded
     addRemoveLinks: false,
     canceled: function (file) {
       showButton()
@@ -194,7 +163,11 @@ const DropzoneUploader = {
       const type = node.getAttribute('data-type')
       const acceptedFiles = node.getAttribute('data-accepted-files')
       const attributeName = node.getAttribute('data-attribute-name')
-      initDropzone(node, type, acceptedFiles, attributeName);
+      var createBlobUrl = node.dataset.createBlobUrl
+      if (!createBlobUrl || createBlobUrl == '') {
+        createBlobUrl = '/api/v2/create_blob'
+      }
+      initDropzone(node, type, acceptedFiles, attributeName, createBlobUrl);
     })
   }
 }

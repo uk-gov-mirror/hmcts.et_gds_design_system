@@ -29,6 +29,25 @@ module EtGdsDesignSystem
         log_response
         response
       end
+
+      def parse_response
+        self.response_data = JSON.parse(response.body)
+      rescue JSON::ParserError
+        self.response_data = {
+          status: 'internal_server_error',
+          uuid: '',
+          errors: [
+            {
+              status: 500,
+              code: 'invalid_json',
+              title: 'An error occured parsing the JSON from the API',
+              detail: 'An error occured parsing the JSON from the API',
+              options: {}, source: '', command: '', uuid: ''
+
+            }
+          ]
+        }
+      end
     end
   end
 end

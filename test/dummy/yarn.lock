@@ -2630,7 +2630,7 @@ esutils@^2.0.2:
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
 "et_gds_design_system@file:../..":
-  version "5.0.5"
+  version "5.4.1"
   dependencies:
     "@rails/ujs" "^6.0.0"
     "@rails/webpacker" "^5.4.3"

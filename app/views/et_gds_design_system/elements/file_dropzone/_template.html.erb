@@ -1,10 +1,4 @@
-<div class="dropzone gds-dropzone-uploader"
-     id="<%= id %>"
-     data-module="et-gds-design-system-dropzone-uploader"
-     data-attribute-name="<%= attribute_name %>"
-     data-type="<%= type %>"
-     data-accepted-files="<%= accepted_files.join(',') %>"
->
+<%= content_tag :div, class: "dropzone gds-dropzone-uploader", id: id, data: { module: "et-gds-design-system-dropzone-uploader", attribute_name: attribute_name, data_type: type, accepted_files: accepted_files.join(','), create_blob_url: create_blob_url } do %>
   <div class="dz-message">
     <div>
       <button type="button" class="govuk-button govuk-button--secondary" data-auto-hide data-gds-dropzone-upload-button>
@@ -60,4 +54,4 @@
       </button>
     </div>
   </div>
-</div>
+<% end %>

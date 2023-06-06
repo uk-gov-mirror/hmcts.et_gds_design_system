@@ -18,7 +18,7 @@ module EtGdsDesignSystem
       include ::GOVUKDesignSystemFormBuilder::Traits::HTMLAttributes
 
       def initialize(builder, object_name, attribute_name, hint:, label:, caption:, form_group:, template:, button_text: nil,
-                     remove_file_button_text: nil, file_selected_text: nil, accepted_files: nil, type: nil, **kwargs, &block)
+                     remove_file_button_text: nil, file_selected_text: nil, accepted_files: nil, type: nil, create_blob_url: nil, **kwargs, &block)
         super(builder, object_name, attribute_name, &block)
 
         @label = label
@@ -31,6 +31,7 @@ module EtGdsDesignSystem
         @remove_file_button_text = remove_file_button_text
         @file_selected_text = file_selected_text
         @template = template
+        @create_blob_url = create_blob_url
       end
 
       def html
@@ -53,6 +54,7 @@ module EtGdsDesignSystem
                           file_selected_text: @file_selected_text,
                           type: @type,
                           accepted_files: @accepted_files,
+                          create_blob_url: @create_blob_url,
                           builder: @builder
                         }
       end

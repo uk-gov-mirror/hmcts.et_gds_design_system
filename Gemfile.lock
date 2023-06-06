@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hmcts/et_test_helpers.git
-  revision: 2b710496d243241b2b737d83fcf6af19238645ff
-  tag: v1.3.0
+  revision: 95aceac8e69ab47d34f0e6e6d10c799aaa764b94
+  tag: v1.3.1
   specs:
-    et_test_helpers (1.3.0)
+    et_test_helpers (1.3.1)
       activesupport (> 5.0)
       capybara (~> 3)
       i18n (~> 1.8)
@@ -14,7 +14,7 @@ GIT
 PATH
   remote: .
   specs:
-    et_gds_design_system (5.4.0)
+    et_gds_design_system (5.4.1)
       govuk_design_system_formbuilder (~> 4.0)
       rails (>= 6.0)
       typhoeus (~> 1.4)
