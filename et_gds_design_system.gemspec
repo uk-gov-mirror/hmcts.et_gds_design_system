@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-rails', '~> 4.0'
   spec.add_development_dependency 'selenium-webdriver', '~> 4.9'
   spec.add_development_dependency 'site_prism', '~> 3.5'
-  spec.add_development_dependency 'webdrivers', '~> 5.2'
+  spec.add_development_dependency 'webdrivers', '~> 5.3'
 end
