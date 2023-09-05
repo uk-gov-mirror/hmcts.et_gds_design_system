@@ -30,6 +30,6 @@ steps:
       bundle install
     displayName: 'Install Ruby and dependencies'
   - script: |
-      bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile"
+      bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile webdrivers:chromedriver:update"
       bash -lc "bundle exec rspec"
     displayName: 'Run RSpec tests with asset precompilation'

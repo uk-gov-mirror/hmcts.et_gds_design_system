@@ -18,7 +18,5 @@ group :test do
   gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.3.1'
 end
 group :development, :test do
-  gem 'debase'
-  gem 'ruby-debug-ide'
   gem 'solargraph'
 end
