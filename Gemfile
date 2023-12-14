@@ -19,4 +19,6 @@ group :test do
 end
 group :development, :test do
   gem 'solargraph'
+  gem "webrick", "~> 1.8"
 end
+
