@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'typhoeus', '~> 1.4'
   spec.add_dependency 'webpacker', '~> 5.0'
 
-  spec.add_development_dependency 'activerecord-nulldb-adapter', '~> 0.4'
+  spec.add_development_dependency 'activerecord-nulldb-adapter', '~> 1.0'
   spec.add_development_dependency 'capybara', '~> 3'
   spec.add_development_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_development_dependency 'dotenv-rails', '~> 2.8'
