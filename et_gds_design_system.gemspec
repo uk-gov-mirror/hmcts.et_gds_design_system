@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'capybara', '~> 3'
   spec.add_development_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_development_dependency 'dotenv-rails', '~> 2.8'
-  spec.add_development_dependency 'rspec-rails', '~> 4.0'
+  spec.add_development_dependency 'rspec-rails', '~> 6.0'
   spec.add_development_dependency 'selenium-webdriver', '~> 4.9'
   spec.add_development_dependency 'site_prism', '~> 4.0'
   spec.add_development_dependency 'webdrivers', '~> 5.3'
