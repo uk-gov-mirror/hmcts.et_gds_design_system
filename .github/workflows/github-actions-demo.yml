@@ -26,4 +26,8 @@ jobs:
           rvm install 3.2.2
           gem install bundler
           bundle install
+      - name: Run tests
+        run: |
+          bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile"
+          bash -lc "bundle exec rspec"
       - run: echo "🍏 This job's status is ${{ job.status }}."
