@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 variables:
-  ruby_version: "2.7.7"
+  ruby_version: "3.2.2"
   nodejs_version: "14.x"
 steps:
   - task: NodeTool@0
@@ -25,11 +25,11 @@ steps:
       curl -sSL https://rvm.io/mpapis.asc | gpg --import -
       curl -sSL https://get.rvm.io | bash -s stable
       source ~/.rvm/scripts/rvm
-      rvm install 2.7.7
+      rvm install 3.2.2
       gem install bundler
       bundle install
     displayName: 'Install Ruby and dependencies'
   - script: |
-      bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile webdrivers:chromedriver:update"
+      bash -lc "cd test/dummy && RAILS_ENV=test bundle exec rails db:create db:migrate assets:precompile"
       bash -lc "bundle exec rspec"
     displayName: 'Run RSpec tests with asset precompilation'

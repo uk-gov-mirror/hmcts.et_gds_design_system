@@ -1,4 +1,5 @@
 require 'capybara'
+require 'selenium/webdriver'
 Capybara.configure do |config|
   driver = ENV.fetch('DRIVER', 'chromedriver_headless').to_sym
   config.javascript_driver = driver
