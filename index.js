@@ -1,7 +1,10 @@
 import RevealOnRadioButton from "./app/javascript/components/RevealOnRadioButton";
+import { initAll } from "govuk-frontend";
+import "govuk-frontend/dist/govuk/assets/images/favicon.ico"
+import "govuk-frontend/dist/govuk/assets/images/favicon.svg"
+import "govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg"
+import "govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png"
 
-const GOVUKFrontend = require("govuk-frontend/govuk/all")
-require.context('govuk-frontend/govuk/assets/images', true)
 require('turbolinks').start();
 import './stylesheet'
 import Components from './app/javascript/components'
@@ -12,7 +15,7 @@ EtGdsDesignSystem.initAll = () => {
     console.log("EdGdsDesignSystem.initAll was called");
     const onPageLoad = () => {
         document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-        GOVUKFrontend.initAll();
+        initAll();
         Components.RevealOnRadioButton.init();
     }
     document.addEventListener("turbolinks:load", onPageLoad);

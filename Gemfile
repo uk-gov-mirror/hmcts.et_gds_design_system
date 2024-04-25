@@ -18,6 +18,6 @@ group :test do
   gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.3.2'
 end
 group :development, :test do
-  gem "webrick", "~> 1.8"
+  gem "puma"
 end
 

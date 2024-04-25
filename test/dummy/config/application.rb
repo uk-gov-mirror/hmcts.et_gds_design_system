@@ -18,7 +18,7 @@ require "nulldb/rails"
 Bundler.require(*Rails.groups)
 require "et_gds_design_system"
 require "dotenv-rails"
-Dotenv::Railtie.load
+Dotenv::Rails.load
 module Dummy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

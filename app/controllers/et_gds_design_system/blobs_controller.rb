@@ -4,6 +4,7 @@ module EtGdsDesignSystem
 
     def create
       service = Api::CreateBlobService.new
+      request.body.rewind
       response = service.call(request.body.read, headers: request.headers)
       respond_to do |format|
         if response.success?

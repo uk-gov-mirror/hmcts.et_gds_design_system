@@ -54,5 +54,5 @@ Capybara.register_driver :safari do |app|
 end
 
 Capybara.always_include_port = true
-Capybara.server = :webrick
+Capybara.server = :puma
 Capybara.save_path = File.absolute_path(File.join('..', '..', 'tmp', 'capybara'), __dir__)

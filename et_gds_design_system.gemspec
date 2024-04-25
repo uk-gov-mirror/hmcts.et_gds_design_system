@@ -16,17 +16,17 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  spec.add_dependency 'govuk_design_system_formbuilder', '~> 4.0'
+  spec.add_dependency 'govuk_design_system_formbuilder', '5.3.0'
   spec.add_dependency 'rails', '>= 6.0'
   spec.add_dependency 'typhoeus', '~> 1.4'
   spec.add_dependency 'webpacker', '~> 5.0'
-  spec.add_dependency 'rack', '< 3.0.0'
+  spec.add_dependency 'rack'
 
   spec.add_development_dependency 'activerecord-nulldb-adapter', '~> 1.0'
   spec.add_development_dependency 'capybara', '~> 3'
   spec.add_development_dependency 'capybara-screenshot', '~> 1.0'
-  spec.add_development_dependency 'dotenv-rails', '~> 2.8'
+  spec.add_development_dependency 'dotenv-rails', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 6.0'
   spec.add_development_dependency 'selenium-webdriver', '~> 4.9'
-  spec.add_development_dependency 'site_prism', '~> 4.0'
+  spec.add_development_dependency 'site_prism', '~> 5.0'
 end

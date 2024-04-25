@@ -3,6 +3,7 @@
 require 'govuk_design_system_formbuilder'
 require 'et_gds_design_system/elements/date'
 require 'et_gds_design_system/elements/file_dropzone'
+require 'et_gds_design_system/deprecator'
 module EtGdsDesignSystem
   module Form
     class Builder < SimpleDelegator
@@ -20,7 +21,7 @@ module EtGdsDesignSystem
       def govuk_date_field(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
-      deprecate govuk_date_field: 'govuk_date_field is deprecated - please use date_field instead and read the documentation as it makes your code simpler'
+      deprecate govuk_date_field: 'govuk_date_field is deprecated - please use date_field instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def date_field(attribute, *_args, label: true, hint: true, optional: false, caption: {}, date_of_birth: false,
                      omit_day: false, form_group: {}, wildcards: false, maxlength_enabled: false, **kw_args, &block)
@@ -31,7 +32,7 @@ module EtGdsDesignSystem
       def govuk_collection_radio_buttons(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
-      deprecate govuk_collection_radio_buttons: 'govuk_collection_radio_buttons is deprecated - please use collection_radio_buttons instead and read the documentation as it makes your code simpler'
+      deprecate govuk_collection_radio_buttons: 'govuk_collection_radio_buttons is deprecated - please use collection_radio_buttons instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def collection_radio_buttons(attribute, collection = i18n_options_for(attribute), key_method = :first,
                                    value_method = :last, *args, label: true, hint: true, optional: false, include_hidden: false, **kw_args)
@@ -44,12 +45,12 @@ module EtGdsDesignSystem
         __getobj__.govuk_collection_select(attribute, collection, key_method, value_method, *args,
                                            label: normalize_label(attribute, label, optional), hint: normalize_hint(attribute, hint), class: 'govuk-!-width-two-thirds', **kw_args)
       end
-      deprecate govuk_collection_select: 'govuk_collection_select is deprecated - please use collection_select instead and read the documentation as it makes your code simpler'
+      deprecate govuk_collection_select: 'govuk_collection_select is deprecated - please use collection_select instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def govuk_collection_check_boxes(*args, label:, **kw_args)
         super(*args, legend: label, **kw_args)
       end
-      deprecate govuk_collection_check_boxes: 'govuk_collection_check_boxes is deprecated - please use collection_check_boxes instead and read the documentation as it makes your code simpler'
+      deprecate govuk_collection_check_boxes: 'govuk_collection_check_boxes is deprecated - please use collection_check_boxes instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def collection_check_boxes(attribute, collection = i18n_options_for(attribute), key_method = :first,
                                  value_method = :last, *args, label: true, hint: true, optional: false, **kw_args)
@@ -86,7 +87,7 @@ module EtGdsDesignSystem
       def govuk_email_field(*args, **kw_args)
         super(*args, spellcheck: false, **kw_args)
       end
-      deprecate govuk_email_field: 'govuk_email_field is deprecated - please use email_field instead and read the documentation as it makes your code simpler'
+      deprecate govuk_email_field: 'govuk_email_field is deprecated - please use email_field instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def email_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
         __getobj__.govuk_email_field(attribute, *args, label: normalize_label(attribute, label, optional),
@@ -96,7 +97,7 @@ module EtGdsDesignSystem
       def govuk_phone_field(*args, **kw_args)
         super(*args, autocomplete: 'tel', **kw_args)
       end
-      deprecate govuk_phone_field: 'govuk_phone_field is deprecated - please use phone_field instead and read the documentation as it makes your code simpler'
+      deprecate govuk_phone_field: 'govuk_phone_field is deprecated - please use phone_field instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def phone_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
         __getobj__.govuk_phone_field(attribute, *args, label: normalize_label(attribute, label, optional),
@@ -108,7 +109,7 @@ module EtGdsDesignSystem
                                                        optional), hint: normalize_hint(attribute,
                                                                                        hint), width: width, **kw_args)
       end
-      deprecate govuk_text_field: 'govuk_text_field is deprecated - please use text_field instead and read the documentation as it makes your code simpler'
+      deprecate govuk_text_field: 'govuk_text_field is deprecated - please use text_field instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def text_field(attribute, *args, label: true, hint: true, width: 'two-thirds', optional: false, **kw_args)
         __getobj__.govuk_text_field(attribute, *args, label: normalize_label(attribute, label, optional),
@@ -119,13 +120,13 @@ module EtGdsDesignSystem
         __getobj__.govuk_text_area(attribute, *args, label: normalize_label(attribute, label, optional),
                                                      hint: normalize_hint(attribute, hint), **kw_args)
       end
-      deprecate govuk_text_area: 'govuk_text_area is deprecated - please use text_area instead and read the documentation as it makes your code simpler'
+      deprecate govuk_text_area: 'govuk_text_area is deprecated - please use text_area instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def file_field(attribute, *args, label: true, hint: true, optional: false, **kw_args)
         __getobj__.govuk_file_field(attribute, *args, label: normalize_label(attribute, label, optional),
                                                       hint: normalize_hint(attribute, hint), **kw_args)
       end
-      deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler'
+      deprecate govuk_file_field: 'govuk_file_field is deprecated - please use file_field instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def file_dropzone_field(attribute, *_args, label: true, hint: true, optional: false, upload_button: true,
                               remove_file_button: true, file_selected_text: true, caption: {}, form_group: {}, accepted_files: nil, type: 'text/csv', **kw_args)
@@ -148,7 +149,7 @@ module EtGdsDesignSystem
         __getobj__.govuk_check_box(attribute, *args, label: normalize_check_box_label(attribute, label, optional),
                                                      hint: normalize_hint(attribute, hint), **kw_args)
       end
-      deprecate govuk_check_box: 'govuk_check_box is deprecated - please use check_box instead and read the documentation as it makes your code simpler'
+      deprecate govuk_check_box: 'govuk_check_box is deprecated - please use check_box instead and read the documentation as it makes your code simpler', deprecator: EtGdsDesignSystem::Deprecator
 
       def submit(*args, **kw_args)
         __getobj__.govuk_submit(*args, **kw_args)

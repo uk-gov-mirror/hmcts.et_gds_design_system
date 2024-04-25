@@ -99,6 +99,7 @@ const initDropzone = (node, type, acceptedFiles, attributeName, createBlobUrl) =
         if (provider === 'azure') {
           const send = xhr.send;
           xhr.send = function () {
+            debugger
             send.call(xhr, file);
             xhr.send = send;
           };
