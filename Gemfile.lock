@@ -14,8 +14,8 @@ GIT
 PATH
   remote: .
   specs:
-    et_gds_design_system (6.0.0)
-      govuk_design_system_formbuilder (= 5.3.0)
+    et_gds_design_system (6.0.1)
+      govuk_design_system_formbuilder (~> 5.3.0)
       rack
       rails (>= 6.0)
       typhoeus (~> 1.4)
@@ -137,7 +137,7 @@ GEM
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.3.0)
+    govuk_design_system_formbuilder (5.3.3)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -165,7 +165,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.6)
     minitest (5.22.3)
     mutex_m (0.2.0)
     net-imap (0.4.10)
@@ -178,7 +178,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3)
+    nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     psych (5.1.2)
