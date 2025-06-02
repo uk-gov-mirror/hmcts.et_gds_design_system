@@ -6,7 +6,7 @@ test/dummy/tmp/
 .idea
 node_modules
 tmp
-public/packs
-test/dummy/public/packs
-test/dummy/public/packs-test
+public/assets
+test/dummy/public/vite*
+test/dummy/public/assets
 .env*

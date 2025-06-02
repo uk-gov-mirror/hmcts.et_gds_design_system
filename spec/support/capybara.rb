@@ -5,6 +5,7 @@ Capybara.configure do |config|
   config.javascript_driver = driver
   config.ignore_hidden_elements = false
   config.visible_text_only = true
+  config.raise_server_errors = false
 end
 
 Capybara.register_driver :firefox do |app|

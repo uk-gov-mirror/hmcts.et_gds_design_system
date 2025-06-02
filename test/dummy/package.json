@@ -5,5 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "et_gds_design_system": "file:../.."
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-ruby": "^5.1.0",
+    "vite-plugin-stimulus-hmr": "^3.0.0"
   }
 }

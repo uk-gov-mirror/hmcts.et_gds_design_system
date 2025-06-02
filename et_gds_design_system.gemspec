@@ -19,9 +19,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'govuk_design_system_formbuilder', '~> 5.3.0'
   spec.add_dependency 'rails', '>= 6.0'
   spec.add_dependency 'typhoeus', '~> 1.4'
-  spec.add_dependency 'webpacker', '~> 5.0'
   spec.add_dependency 'rack'
 
+  spec.add_development_dependency 'vite_rails', '~> 3.0'
+  spec.add_development_dependency 'turbolinks', '~> 5'
+  spec.add_development_dependency 'propshaft', '~> 1.1'
   spec.add_development_dependency 'activerecord-nulldb-adapter', '~> 1.0'
   spec.add_development_dependency 'capybara', '~> 3'
   spec.add_development_dependency 'capybara-screenshot', '~> 1.0'

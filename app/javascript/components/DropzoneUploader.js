@@ -2,7 +2,7 @@ import Dropzone from "dropzone";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import SparkMD5 from 'spark-md5';
-import previewTemplate from "./DropzoneUploader/preview-template.html";
+import previewTemplate from "./DropzoneUploader/preview-template.html.js";
 Dropzone.autoDiscover = false
 
 let uploadKey, dropzoneUploadForm;
@@ -77,6 +77,7 @@ function getFileHash(file, headerCallback) {
  */
 const initDropzone = (node, type, acceptedFiles, attributeName, createBlobUrl) => {
   let provider;
+  console.log('initDropzone called')
   const extractPreviewContent = () => {
     const templateContainer = node.querySelector('*[data-gds-dropzone-uploader-preview-template]')
     templateContainer.parentElement.removeChild(templateContainer)

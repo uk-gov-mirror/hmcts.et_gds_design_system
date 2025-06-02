@@ -15,7 +15,7 @@ steps:
   - task: NodeTool@0
     inputs:
       versionSource: 'spec'
-      versionSpec: '14.x'
+      versionSpec: '20.x'
   - script: |
       sudo apt-get remove nodejs
       sudo apt-get remove npm

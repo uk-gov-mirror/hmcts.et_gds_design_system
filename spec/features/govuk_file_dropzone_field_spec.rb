@@ -39,6 +39,7 @@ RSpec.describe 'govuk_file_dropzone_field', type: :feature, js: true do
     it 'can be set and value returned' do
       file = __FILE__
       test_page.load
+      sleep 1
       test_page.govuk_file_dropzone_field.set(file)
       test_page.govuk_file_dropzone_field.assert_value(file)
     end
