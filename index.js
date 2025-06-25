@@ -1,5 +1,5 @@
 import RevealOnRadioButton from "./app/javascript/components/RevealOnRadioButton";
-import { initAll } from "/govuk-frontend/dist/govuk/govuk-frontend.min.js";
+import { initAll } from "govuk-frontend";
 import TurboLinks from "turbolinks"
 TurboLinks.start();
 import './stylesheet.scss'
