@@ -14,7 +14,7 @@ GIT
 PATH
   remote: .
   specs:
-    et_gds_design_system (7.2.0)
+    et_gds_design_system (7.2.1)
       govuk_design_system_formbuilder (~> 5.3.0)
       rack
       rails (>= 6.0)
@@ -169,7 +169,7 @@ GEM
     mini_portile2 (2.8.6)
     minitest (5.22.3)
     mutex_m (0.2.0)
-    net-imap (0.5.8)
+    net-imap (0.5.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -323,4 +323,4 @@ DEPENDENCIES
   vite_rails (~> 3.0)
 
 BUNDLED WITH
-   2.1.4
+   2.5.7
