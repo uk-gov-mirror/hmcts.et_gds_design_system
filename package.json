@@ -2,7 +2,7 @@
     "name": "et_gds_design_system",
     "private": true,
     "dependencies": {
-        "@rails/ujs": "^6.0.0",
+        "@rails/ujs": "^7.0.0",
         "@rails/webpacker": "^5.4.3",
         "axios": "^0.25.0",
         "dropzone": "^6.0.0-beta.2",
