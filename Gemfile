@@ -15,7 +15,7 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 group :test do
   # gem 'et_test_helpers', path: '../et_test_helpers'
-  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.3.2'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.3.3'
 end
 group :development, :test do
   gem "puma"
