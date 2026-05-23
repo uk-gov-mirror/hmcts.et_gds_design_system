@@ -7,7 +7,7 @@
     "govuk-frontend": "^5.11.0",
     "prop-types": "^15.7.2",
     "spark-md5": "^3.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^11.0.0"
   },
   "peerDependencies": {
     "@hotwired/stimulus": "^3.2.2"
