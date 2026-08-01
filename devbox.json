@@ -3,7 +3,7 @@
   "packages": {
     "ruby": "4.0.1",
     "nodejs": "latest",
-    "yarn": "latest",
+    "yarn": "1.22.22",
     "pkg-config": "latest",
     "libyaml.dev": "",
     "libffi.dev": ""
